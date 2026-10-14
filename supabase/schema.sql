@@ -72,7 +72,7 @@ begin
     end if;
   end if;
   if auth.uid() is not null and public.is_coach() and new.role is distinct from old.role then
-    raise exception 'Role changes must be made in the Supabase dashboard';
+    raise exception 'Role changes are made in the dashboard';
   end if;
   return new;
 end $$;
