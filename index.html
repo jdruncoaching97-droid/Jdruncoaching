@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JD Run Coaching</title>
+<meta name="description" content="Online run coaching for 5K to half marathon runners, built on Daniels' Running Formula, with strength work and weekly check-ins.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<header class="nav on-maroon">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="JD Run Coaching, home">JD</a>
+    <nav aria-label="Main"><ul>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#coaching">Coaching</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a class="login" href="portal/">Athlete login</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero on-maroon">
+  <div class="wrap">
+    <img class="logo-mark" src="assets/logo-mark.jpg" width="1240" height="1040" alt="JD Run Coaching">
+    <h1>Training that fits your week and your paces.</h1>
+    <p class="lead">Online run coaching built on Daniels' Running Formula. A plan set from your own race times, strength work that supports it, and a coach who reads your logs.</p>
+    <div class="actions">
+      <a class="btn" href="#enquire">Enquire about coaching</a>
+      <a class="btn ghost" href="portal/">Athlete login</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="how">
+  <div class="wrap split">
+    <div>
+      <h2>How coaching works</h2>
+      <p class="intro">You start with where you are now, not where you were in your best season.</p>
+    </div>
+    <ol class="steps">
+      <li><h3>Tell me about your running</h3><p>Recent races, weekly kilometres, injury history and the days you can train.</p></li>
+      <li><h3>Set your paces</h3><p>A race or time trial sets your VDOT, and every session is given a pace from it. Paces are reset as you improve.</p></li>
+      <li><h3>Train from your plan</h3><p>Each week appears in your athlete portal with the sessions, paces and notes. Log each run with distance, time, effort and any niggles.</p></li>
+      <li><h3>Check in weekly</h3><p>I read your logs and adjust the next week. If a session felt too easy or a calf is grumbling, the plan changes.</p></li>
+      <li><h3>Race</h3><p>A taper and race-week plan, then a review of what worked and what comes next.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="block alt" id="approach">
+  <div class="wrap">
+    <h2>The approach</h2>
+    <p class="intro">Running is the main event, but it sits inside a plan that includes strength and recovery.</p>
+    <dl class="facts">
+      <div><dt>Paces from your VDOT</dt><dd>Easy, marathon, threshold, interval and repetition paces taken from Daniels' tables, using your current fitness.</dd></div>
+      <div><dt>Quality sessions that build in order</dt><dd>Repetitions and strides first, then threshold work, then intervals, then race-specific sessions.</dd></div>
+      <div><dt>Strength that supports the running</dt><dd>Heavy lifts paired with plyometrics, plus accessory work for the calves, hips and shins.</dd></div>
+      <div><dt>Volume that respects your history</dt><dd>Long run and quality session sizes are capped as a share of your week, and cutback weeks are built in.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="block" id="coaching">
+  <div class="wrap">
+    <h2>Coaching options</h2>
+    <p class="intro">Prices are to be confirmed. Enquire and I'll recommend the option that suits your goal.</p>
+    <div class="offers">
+      <div class="offer"><h3>Race plan</h3><p>A single plan for one race, with paces, a taper and race-week guide. Delivered through the portal, with one check-in at the half-way point.</p><span class="price"><span class="placeholder">Enquire</span></span></div>
+      <div class="offer"><h3>Ongoing coaching</h3><p>Weekly plans, session feedback and a check-in every week. Paces updated as your fitness changes.</p><span class="price"><span class="placeholder">Enquire</span></span></div>
+      <div class="offer"><h3>Strength and running</h3><p>Ongoing coaching plus a three-day strength program written to fit around your runs.</p><span class="price"><span class="placeholder">Enquire</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt about" id="about">
+  <div class="wrap split">
+    <div><h2>About your coach</h2></div>
+    <div>
+      <p><span class="placeholder">Edit this: a short bio. Where you coach from, how long you've run, your own race results, and your background in health.</span></p>
+      <p><span class="placeholder">Edit this: who you coach best, for example runners returning from a break or moving from 5K to the half marathon.</span></p>
+      <p class="note">Coaching is not medical advice. If you have pain that is getting worse, see a health professional.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="enquire">
+  <div class="wrap split">
+    <div>
+      <h2>Enquire</h2>
+      <p class="intro">Tell me your goal and where you are now. I'll reply by email.</p>
+    </div>
+    <form class="enquire" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+      <input type="hidden" name="form-name" value="enquiry">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <label>Name <input name="name" required autocomplete="name"></label>
+      <label>Email <input type="email" name="email" required autocomplete="email"></label>
+      <label>Goal race and date <input name="goal" placeholder="For example: 10K, 27 December"></label>
+      <label>Recent race or current weekly kilometres <textarea name="background"></textarea></label>
+      <button class="btn" type="submit">Send enquiry</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="on-maroon">
+  <div class="wrap">
+    <span>JD Run Coaching</span>
+    <a href="portal/">Athlete login</a>
+  </div>
+</footer>
+</body>
+</html>

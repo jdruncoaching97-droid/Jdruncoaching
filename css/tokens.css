@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&family=Poppins:wght@300;400;500;600&display=swap');
+:root {
+  --maroon: #7a0000;
+  --maroon-deep: #4d0000;
+  --maroon-tint: #f3e6e4;
+  --paper: #ffffff;
+  --mist: #f4f1f0;
+  --ink: #241b1b;
+  --ink-soft: #5c5150;
+  --rule: #ddd2cf;
+  --ok: #2f6b3a;
+  --warn: #b25b00;
+  --serif: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --gutter: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 400; font-size: 1rem; line-height: 1.6; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.01em; }
+p { margin: 0 0 1em; }
+a { color: var(--maroon); }
+:focus-visible { outline: 3px solid var(--maroon); outline-offset: 3px; }
+.on-maroon :focus-visible { outline-color: #fff; }
+.btn { display: inline-block; font: 500 .95rem/1 var(--sans); padding: .95em 1.6em; border: 2px solid var(--maroon); background: var(--maroon); color: #fff; text-decoration: none; cursor: pointer; border-radius: 0; }
+.btn:hover { background: var(--maroon-deep); border-color: var(--maroon-deep); }
+.btn.ghost { background: transparent; color: var(--maroon); }
+.btn.ghost:hover { background: var(--maroon-tint); }
+.on-maroon .btn { background: #fff; color: var(--maroon); border-color: #fff; }
+.on-maroon .btn:hover { background: var(--maroon-tint); }
+.on-maroon .btn.ghost { background: transparent; color: #fff; }
+.on-maroon .btn.ghost:hover { background: rgba(255,255,255,.12); }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
