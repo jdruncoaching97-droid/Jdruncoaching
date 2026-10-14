@@ -33,5 +33,5 @@ Text in yellow-pink highlight in the About and Coaching sections is placeholder.
 ## Notes
 - Website enquiries are saved to Supabase and shown in the coach portal under Enquiries (run `supabase/enquiries.sql` once). Netlify Forms stays as a backup if saving fails.
 - Athletes can see only their own plan and logs. You can see only athletes you have added.
-- Paces are calculated from Daniels' VDOT formulas and match his tables to within a couple of seconds.
+- Training paces are calculated from a race time using the VDOT method.
 - Email confirmation is on by default in Supabase. For a small group you can turn it off under Authentication > Providers > Email.

@@ -89,7 +89,7 @@
   function calcView(currentVdot) {
     return '<h1>Paces</h1>' +
       (currentVdot ? '<div class="panel"><h2>Your coach set VDOT ' + esc(currentVdot) + '</h2>' + pacesHtml(Number(currentVdot)) + '</div>' : '') +
-      '<div class="panel"><h2>Calculate from a race time</h2><p class="muted">Use a recent, all-out race or time trial. Paces follow Daniels\' tables to within a couple of seconds.</p>' +
+      '<div class="panel"><h2>Calculate from a race time</h2><p class="muted">Use a recent, all-out race or time trial.</p>' +
       '<form class="grid3" id="calc"><label>Distance<select name="d"><option value="5000">5K</option><option value="10000">10K</option><option value="21097.5">Half marathon</option><option value="42195">Marathon</option><option value="3000">3K</option></select></label>' +
       '<label>Time (mm:ss or h:mm:ss)<input name="t" required placeholder="21:30"></label><label>&nbsp;<button class="btn" type="submit">Calculate</button></label></form>' +
       '<div id="calcout" style="margin-top:16px"></div></div>';
