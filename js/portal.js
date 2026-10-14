@@ -106,6 +106,28 @@
     };
   }
 
+  /* ---------- Garmin workout download ---------- */
+  function garminBtn(s) {
+    return (s.steps && s.steps.length) ? ' <button class="btn small ghost" data-fit="' + esc(s.id) + '">Download for Garmin</button>' : '';
+  }
+  function downloadFit(sess, vdot) {
+    var name = (sess.title || 'Workout').replace(/[^A-Za-z0-9 .+-]/g, '').slice(0, 15).trim() || 'Workout';
+    var bytes = FitWorkout.build({ name: name, steps: sess.steps, paces: vdot ? V.paces(Number(vdot)) : null });
+    var blob = new Blob([bytes], { type: 'application/octet-stream' }), a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = (sess.session_date || 'workout') + '-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.fit';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+  }
+  function bindFit(sessions, vdot) {
+    document.querySelectorAll('[data-fit]').forEach(function (b) {
+      b.onclick = function () {
+        var sess = sessions.filter(function (x) { return x.id === b.dataset.fit; })[0];
+        if (sess) downloadFit(sess, vdot);
+      };
+    });
+  }
+
   /* ---------- athlete ---------- */
   var ATHLETE_TABS = [['week', 'This week'], ['log', 'Log a run'], ['history', 'History'], ['paces', 'Paces']];
 
@@ -123,7 +145,7 @@
         var done = logs.some(function (l) { return l.plan_session_id === s.id; });
         return '<div class="sess"><h3><span class="chip' + (done ? ' done' : '') + '">' + (done ? 'Logged' : esc(TYPES[s.session_type] || s.session_type)) + '</span>' + esc(s.title) + (s.target_km ? ' <span class="muted">(' + esc(s.target_km) + ' km)</span>' : '') + '</h3>' +
           (s.description ? '<p>' + esc(s.description) + '</p>' : '') +
-          (done || s.session_type === 'rest' ? '' : '<div><button class="btn small ghost" data-log="' + s.id + '" data-date="' + key + '">Log this session</button></div>') + '</div>';
+          (done || s.session_type === 'rest' ? '' : '<div><button class="btn small ghost" data-log="' + s.id + '" data-date="' + key + '">Log this session</button>' + garminBtn(s) + '</div>') + '</div>';
       }).join('');
       var extra = ll.filter(function (l) { return !l.plan_session_id; }).map(function (l) {
         return '<div class="sess"><h3><span class="chip done">Logged</span>' + esc(l.distance_km) + ' km</h3><p class="muted">' + esc(V.fmtTime(l.duration_sec)) + ' | ' + pacePerKm(Number(l.distance_km), l.duration_sec) + '</p></div>';
@@ -141,6 +163,7 @@
     $('#prev').onclick = function () { state.weekStart = addDays(ws, -7); athleteWeek(); };
     $('#next').onclick = function () { state.weekStart = addDays(ws, 7); athleteWeek(); };
     $('#thisweek').onclick = function () { state.weekStart = mondayOf(new Date()); athleteWeek(); };
+    bindFit(sessions, state.profile.vdot);
     app.querySelectorAll('[data-log]').forEach(function (b) {
       b.onclick = function () { state.tab = 'log'; state.prefill = { plan_session_id: b.dataset.log, date: b.dataset.date }; route(); };
     });
@@ -261,7 +284,7 @@
     var sessions = q[0].data || [], logs = q[1].data || [];
     var planned = sessions.reduce(function (s, x) { return s + Number(x.target_km || 0); }, 0);
     var list = sessions.map(function (s) {
-      return '<tr><td data-label="Day">' + DOW[(parseISO(s.session_date).getDay() + 6) % 7] + ' ' + fmtDay(parseISO(s.session_date)) + '</td><td data-label="Session"><span class="chip">' + esc(TYPES[s.session_type] || s.session_type) + '</span>' + esc(s.title) + '<div class="muted" style="white-space:pre-wrap">' + esc(s.description || '') + '</div></td><td data-label="km">' + esc(s.target_km || '') + '</td><td data-label=""><button class="link" data-delsess="' + esc(s.id) + '">Delete</button></td></tr>';
+      return '<tr><td data-label="Day">' + DOW[(parseISO(s.session_date).getDay() + 6) % 7] + ' ' + fmtDay(parseISO(s.session_date)) + '</td><td data-label="Session"><span class="chip">' + esc(TYPES[s.session_type] || s.session_type) + '</span>' + esc(s.title) + '<div class="muted" style="white-space:pre-wrap">' + esc(s.description || '') + '</div></td><td data-label="km">' + esc(s.target_km || '') + '</td><td data-label="">' + garminBtn(s) + ' <button class="link" data-delsess="' + esc(s.id) + '">Delete</button></td></tr>';
     }).join('');
     shell(COACH_TABS,
       '<p><button class="link" id="back">Back to athletes</button></p><h1>' + esc(a.full_name || a.email) + '</h1>' + dbError(q[0].error || q[1].error) +
@@ -280,6 +303,7 @@
     $('#back').onclick = function () { state.athlete = null; coachAthletes(); };
     $('#prev').onclick = function () { state.athleteWeek = addDays(ws, -7); coachAthlete(); };
     $('#next').onclick = function () { state.athleteWeek = addDays(ws, 7); coachAthlete(); };
+    bindFit(sessions, a.vdot);
     $('#vdotf').onsubmit = async function (e) {
       e.preventDefault();
       var v = new FormData(e.target).get('v'), val = v === '' ? null : Number(v);
@@ -315,11 +339,17 @@
       var ex = await sb.from('plan_sessions').select('id').eq('athlete_id', a.id).gte('session_date', iso(start)).lte('session_date', iso(last));
       if (ex.error) { msg.innerHTML = dbError(ex.error); return; }
       if (ex.data.length && !confirm('This athlete already has ' + ex.data.length + ' sessions between ' + fmtDay(start) + ' and ' + fmtDay(last) + '. Load the plan anyway? The existing sessions stay.')) return;
-      var rows = tr.sessions.map(function (s) { return { athlete_id: a.id, session_date: iso(addDays(start, s.day_offset)), session_type: s.type, title: s.title, description: s.description || null, target_km: s.km }; });
+      var rows = tr.sessions.map(function (s) { return { athlete_id: a.id, session_date: iso(addDays(start, s.day_offset)), session_type: s.type, title: s.title, description: s.description || null, target_km: s.km, steps: s.steps || null }; });
+      var noSteps = false;
       for (var i = 0; i < rows.length; i += 50) {
         var ins = await sb.from('plan_sessions').insert(rows.slice(i, i + 50));
+        if (ins.error && i === 0 && /steps/i.test(ins.error.message || '')) {   // steps column not added yet: load without Garmin data
+          noSteps = true; rows.forEach(function (r) { delete r.steps; });
+          ins = await sb.from('plan_sessions').insert(rows.slice(0, 50));
+        }
         if (ins.error) { msg.innerHTML = dbError(ins.error) + '<p class="muted">Part of the plan may have loaded. Check the weeks before loading again.</p>'; return; }
       }
+      if (noSteps) alert('Plan loaded, but the Garmin download data was left out because the steps column has not been added in Supabase yet.');
       state.athleteWeek = mondayOf(new Date()); coachAthlete();
     };
     $('#copyprev').onclick = async function () {
@@ -327,7 +357,7 @@
       var pw = addDays(ws, -7);
       var p = await sb.from('plan_sessions').select('*').eq('athlete_id', a.id).gte('session_date', iso(pw)).lte('session_date', iso(addDays(pw, 6)));
       if (p.error || !p.data.length) { alert(p.error ? p.error.message : 'The previous week has no sessions to copy.'); return; }
-      var rows = p.data.map(function (s) { return { athlete_id: a.id, session_date: iso(addDays(parseISO(s.session_date), 7)), session_type: s.session_type, title: s.title, description: s.description, target_km: s.target_km }; });
+      var rows = p.data.map(function (s) { var r = { athlete_id: a.id, session_date: iso(addDays(parseISO(s.session_date), 7)), session_type: s.session_type, title: s.title, description: s.description, target_km: s.target_km }; if (s.steps) r.steps = s.steps; return r; });
       var ins = await sb.from('plan_sessions').insert(rows);
       if (ins.error) alert(ins.error.message); else coachAthlete();
     };

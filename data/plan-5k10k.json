@@ -7,7 +7,29 @@
    "type": "easy",
    "title": "8 km easy + 4 x 8s hill sprints",
    "km": 8.0,
-   "description": "All-out up a 6-8% hill, walk back down, about 90s between"
+   "description": "All-out up a 6-8% hill, walk back down, about 90s between",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 8,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 1,
@@ -21,7 +43,35 @@
    "type": "threshold",
    "title": "10 km fartlek",
    "km": 10.0,
-   "description": "3 km easy, 6 x (2 min at T effort, 2 min easy jog), 2-3 km easy"
+   "description": "3 km easy, 6 x (2 min at T effort, 2 min easy jog), 2-3 km easy",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 3,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "min": 2
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 2
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2.5,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 3,
@@ -35,7 +85,30 @@
    "type": "easy",
    "title": "8 km easy + 8 x 20s strides",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 5,
@@ -49,14 +122,65 @@
    "type": "long",
    "title": "Long run 14 km (Q2)",
    "km": 14.0,
-   "description": "first 5 km easy, 2 km at marathon pace, 1 km easy, 2 km at marathon pace, last 4 km easy. Marathon effort is steady and controlled, about RPE 7. Threshold work (RPE 8) is a step above."
+   "description": "first 5 km easy, 2 km at marathon pace, 1 km easy, 2 km at marathon pace, last 4 km easy. Marathon effort is steady and controlled, about RPE 7. Threshold work (RPE 8) is a step above.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 5,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2,
+     "zone": "M",
+     "name": "M pace"
+    },
+    {
+     "k": "run",
+     "km": 1,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2,
+     "zone": "M",
+     "name": "M pace"
+    },
+    {
+     "k": "cooldown",
+     "km": 4,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 7,
    "type": "easy",
    "title": "8 km easy + 5 x 8s hill sprints",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 5,
+     "steps": [
+      {
+       "k": "work",
+       "s": 8,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 8,
@@ -70,7 +194,35 @@
    "type": "threshold",
    "title": "10 km threshold session",
    "km": 10.0,
-   "description": "2.5-3 km easy, 3 x 6 min at T (RPE 6-7, about 4:18-4:24/km, not faster) with 2 min easy jog between, 2 km easy"
+   "description": "2.5-3 km easy, 3 x 6 min at T (RPE 6-7, about 4:18-4:24/km, not faster) with 2 min easy jog between, 2 km easy",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2.75,
+     "zone": "E"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "min": 6
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 2
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 10,
@@ -84,7 +236,30 @@
    "type": "easy",
    "title": "9 km easy + 8 x 20s strides",
    "km": 9.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 8,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 12,
@@ -98,14 +273,65 @@
    "type": "long",
    "title": "Long run 15 km (Q2)",
    "km": 15.0,
-   "description": "first 5 km easy, 2.5 km at marathon pace, 1 km easy, 2.5 km at marathon pace, last 4 km easy"
+   "description": "first 5 km easy, 2.5 km at marathon pace, 1 km easy, 2.5 km at marathon pace, last 4 km easy",
+   "steps": [
+    {
+     "k": "run",
+     "km": 5,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2.5,
+     "zone": "M",
+     "name": "M pace"
+    },
+    {
+     "k": "run",
+     "km": 1,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2.5,
+     "zone": "M",
+     "name": "M pace"
+    },
+    {
+     "k": "cooldown",
+     "km": 4,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 14,
    "type": "easy",
    "title": "9 km easy + 6 x 8s hill sprints",
    "km": 9.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 8,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 8,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 15,
@@ -119,7 +345,40 @@
    "type": "race",
    "title": "5K TIME TRIAL",
    "km": 9.0,
-   "description": "2 km easy warm-up, 4 x 100m strides, 5 km hard but even effort (aim for an even pace or slight negative split), 2 km easy. Convert the result to a VDOT and reset your paces."
+   "description": "2 km easy warm-up, 4 x 100m strides, 5 km hard but even effort (aim for an even pace or slight negative split), 2 km easy. Convert the result to a VDOT and reset your paces.",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    },
+    {
+     "k": "work",
+     "km": 5,
+     "name": "5K effort"
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 17,
@@ -133,7 +392,30 @@
    "type": "easy",
    "title": "8 km easy + 8 x 20s strides",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 19,
@@ -147,14 +429,49 @@
    "type": "long",
    "title": "Long run 16 km (Q2)",
    "km": 16.0,
-   "description": "first 13 km easy, last 3 km at marathon pace. Keep it controlled: the 5K time trial was on Wednesday."
+   "description": "first 13 km easy, last 3 km at marathon pace. Keep it controlled: the 5K time trial was on Wednesday.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 13,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 3,
+     "zone": "M",
+     "name": "M pace"
+    }
+   ]
   },
   {
    "day_offset": 21,
    "type": "easy",
    "title": "8 km easy + 4 x 8s hill sprints",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 8,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 22,
@@ -168,7 +485,35 @@
    "type": "repetition",
    "title": "9 km: 8 x 200 m at R pace",
    "km": 9.0,
-   "description": "2 km warm-up, 8 x 200m at R pace with 200m walk/jog recovery, 2 km cool-down"
+   "description": "2 km warm-up, 8 x 200m at R pace with 200m walk/jog recovery, 2 km cool-down",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "R",
+       "m": 200
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "m": 200
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 24,
@@ -182,7 +527,30 @@
    "type": "easy",
    "title": "8 km easy + 8 x 20s strides",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 26,
@@ -196,14 +564,49 @@
    "type": "long",
    "title": "Long run 13 km (Q2)",
    "km": 13.0,
-   "description": "first 11 km easy, last 2 km at marathon pace. Cutback week, so keep it short and smooth."
+   "description": "first 11 km easy, last 2 km at marathon pace. Cutback week, so keep it short and smooth.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 11,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2,
+     "zone": "M",
+     "name": "M pace"
+    }
+   ]
   },
   {
    "day_offset": 28,
    "type": "easy",
    "title": "9 km easy + 6 x 10s hill sprints",
    "km": 9.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 8,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 10,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 29,
@@ -217,7 +620,36 @@
    "type": "interval",
    "title": "HILL REPEATS (about 10-11 km)",
    "km": 10.0,
-   "description": "3 km warm-up ending at the hill, 8 x 60s uphill at I effort (hard but controlled, not a sprint) with a jog back down as recovery, 2-3 km cool-down. Use effort, not pace."
+   "description": "3 km warm-up ending at the hill, 8 x 60s uphill at I effort (hard but controlled, not a sprint) with a jog back down as recovery, 2-3 km cool-down. Use effort, not pace.",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 3,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "I",
+       "s": 60,
+       "name": "Hill rep"
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog down",
+       "s": 90
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2.5,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 31,
@@ -231,7 +663,30 @@
    "type": "easy",
    "title": "8 km easy + 8 x 20s strides",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 33,
@@ -245,14 +700,49 @@
    "type": "long",
    "title": "Long run 16 km (Q2)",
    "km": 16.0,
-   "description": "first 13 km easy, last 3 km at steady (marathon) pace"
+   "description": "first 13 km easy, last 3 km at steady (marathon) pace",
+   "steps": [
+    {
+     "k": "run",
+     "km": 13,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 3,
+     "zone": "M",
+     "name": "Steady"
+    }
+   ]
   },
   {
    "day_offset": 35,
    "type": "easy",
    "title": "9 km easy + 6 x 10s hill sprints",
    "km": 9.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 8,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 10,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 36,
@@ -266,7 +756,35 @@
    "type": "threshold",
    "title": "THRESHOLD CRUISE INTERVALS (about 11 km)",
    "km": 11.0,
-   "description": "3 km warm-up, 4 x 1 km at T pace with 1 min easy jog between, 2-3 km cool-down"
+   "description": "3 km warm-up, 4 x 1 km at T pace with 1 min easy jog between, 2-3 km cool-down",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 3,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "km": 1
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "s": 60
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2.5,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 38,
@@ -280,7 +798,30 @@
    "type": "easy",
    "title": "10 km easy + 8 x 20s strides",
    "km": 10.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 9,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 40,
@@ -294,14 +835,49 @@
    "type": "long",
    "title": "Long run 16 km (Q2)",
    "km": 16.0,
-   "description": "first 12 km easy, last 4 km at steady (marathon) pace"
+   "description": "first 12 km easy, last 4 km at steady (marathon) pace",
+   "steps": [
+    {
+     "k": "run",
+     "km": 12,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 4,
+     "zone": "M",
+     "name": "Steady"
+    }
+   ]
   },
   {
    "day_offset": 42,
    "type": "easy",
    "title": "9 km easy + 8 x 10s hill sprints",
    "km": 9.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 8,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 10,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 43,
@@ -315,7 +891,35 @@
    "type": "interval",
    "title": "VO2MAX 1Ks (about 12 km)",
    "km": 12.0,
-   "description": "3 km warm-up, 5 x 1 km at I pace with 3 min easy jog between, 2 km cool-down. Add a 6th rep only if all five are on pace and controlled. Use the I pace from your Week 3 time trial VDOT."
+   "description": "3 km warm-up, 5 x 1 km at I pace with 3 min easy jog between, 2 km cool-down. Add a 6th rep only if all five are on pace and controlled. Use the I pace from your Week 3 time trial VDOT.",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 3,
+     "zone": "E"
+    },
+    {
+     "rep": 5,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "I",
+       "km": 1
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 3
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 45,
@@ -329,7 +933,30 @@
    "type": "easy",
    "title": "10 km easy + 8 x 20s strides",
    "km": 10.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 9,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 47,
@@ -343,14 +970,50 @@
    "type": "long",
    "title": "Long run 17 km (Q2)",
    "km": 17.0,
-   "description": "first 12 km easy, last 5 km at steady (marathon) pace"
+   "description": "first 12 km easy, last 5 km at steady (marathon) pace",
+   "steps": [
+    {
+     "k": "run",
+     "km": 12,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 5,
+     "zone": "M",
+     "name": "Steady"
+    }
+   ]
   },
   {
    "day_offset": 49,
    "type": "easy",
    "title": "8 km easy + 6 x 20s strides",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 50,
@@ -364,7 +1027,35 @@
    "type": "threshold",
    "title": "THRESHOLD CHECK (about 9 km)",
    "km": 9.0,
-   "description": "2.5 km warm-up, 3 x 6 min at T pace with 1 min easy jog, 2 km cool-down. Keep it controlled: comfortably hard, not a race effort. Use it as a check on your VDOT (see Section 2)."
+   "description": "2.5 km warm-up, 3 x 6 min at T pace with 1 min easy jog, 2 km cool-down. Keep it controlled: comfortably hard, not a race effort. Use it as a check on your VDOT (see Section 2).",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2.5,
+     "zone": "E"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "min": 6
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "s": 60
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 52,
@@ -378,7 +1069,30 @@
    "type": "easy",
    "title": "8 km easy + 8 x 20s strides",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 54,
@@ -392,14 +1106,49 @@
    "type": "long",
    "title": "Long run 14 km (Q2)",
    "km": 14.0,
-   "description": "first 11 km easy, last 3 km at marathon pace"
+   "description": "first 11 km easy, last 3 km at marathon pace",
+   "steps": [
+    {
+     "k": "run",
+     "km": 11,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 3,
+     "zone": "M",
+     "name": "M pace"
+    }
+   ]
   },
   {
    "day_offset": 56,
    "type": "easy",
    "title": "8 km easy + 4 x 10s hill sprints",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 10,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 57,
@@ -413,7 +1162,57 @@
    "type": "threshold",
    "title": "SIGNATURE SESSION 1 (broken tempo into speed)",
    "km": 14.0,
-   "description": "2.5 km warm-up, 3 x 8 min at T pace with 1 min jog, 3 min easy jog, then 4 x 400m at I pace with 2 min jog recovery, 2 km cool-down. Total about 14 km. This is slightly above the usual Daniels cap for threshold volume, which is why it appears once only. If you feel flat, drop to 2 x 10 min tempo."
+   "description": "2.5 km warm-up, 3 x 8 min at T pace with 1 min jog, 3 min easy jog, then 4 x 400m at I pace with 2 min jog recovery, 2 km cool-down. Total about 14 km. This is slightly above the usual Daniels cap for threshold volume, which is why it appears once only. If you feel flat, drop to 2 x 10 min tempo.",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2.5,
+     "zone": "E"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "min": 8
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "s": 60
+      }
+     ]
+    },
+    {
+     "k": "recover",
+     "zone": "E",
+     "name": "Easy jog",
+     "min": 3
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "I",
+       "m": 400
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 2
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 59,
@@ -427,7 +1226,30 @@
    "type": "easy",
    "title": "8 km easy + 6 x 20s strides",
    "km": 8.0,
-   "description": "Relaxed, keep them smooth"
+   "description": "Relaxed, keep them smooth",
+   "steps": [
+    {
+     "k": "run",
+     "km": 8,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 61,
@@ -441,14 +1263,50 @@
    "type": "long",
    "title": "Long run 16 km (Q2)",
    "km": 16.0,
-   "description": "first 12 km easy, last 4 km at steady (marathon) pace"
+   "description": "first 12 km easy, last 4 km at steady (marathon) pace",
+   "steps": [
+    {
+     "k": "run",
+     "km": 12,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 4,
+     "zone": "M",
+     "name": "Steady"
+    }
+   ]
   },
   {
    "day_offset": 63,
    "type": "easy",
    "title": "9 km easy + 6 x 20s strides",
    "km": 9.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 8,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 64,
@@ -462,7 +1320,58 @@
    "type": "repetition",
    "title": "SIGNATURE SESSION 2 (progressive run into speed)",
    "km": 14.0,
-   "description": "2 km easy warm-up, 8 km progressive run (first 3 km easy, next 2 km steady/marathon pace, last 3 km at T pace), 3 min easy jog, then 6 x 400m at I-R pace with 200m jog recovery, 2 km cool-down. Total about 14 km."
+   "description": "2 km easy warm-up, 8 km progressive run (first 3 km easy, next 2 km steady/marathon pace, last 3 km at T pace), 3 min easy jog, then 6 x 400m at I-R pace with 200m jog recovery, 2 km cool-down. Total about 14 km.",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2,
+     "zone": "E"
+    },
+    {
+     "k": "run",
+     "km": 3,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2,
+     "zone": "M",
+     "name": "M pace"
+    },
+    {
+     "k": "work",
+     "km": 3,
+     "zone": "T",
+     "name": "T pace"
+    },
+    {
+     "k": "recover",
+     "zone": "E",
+     "name": "Easy jog",
+     "min": 3
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "I",
+       "m": 400
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "m": 200
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 66,
@@ -476,7 +1385,30 @@
    "type": "easy",
    "title": "9 km easy + 6 x 20s strides",
    "km": 9.0,
-   "description": "Relaxed, keep them smooth"
+   "description": "Relaxed, keep them smooth",
+   "steps": [
+    {
+     "k": "run",
+     "km": 8,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 68,
@@ -490,14 +1422,50 @@
    "type": "long",
    "title": "Long run 17 km (Q2)",
    "km": 17.0,
-   "description": "first 12 km easy, last 5 km at steady (marathon) pace. If legs are heavy after Wednesday's signature session, drop the steady block to 3 km."
+   "description": "first 12 km easy, last 5 km at steady (marathon) pace. If legs are heavy after Wednesday's signature session, drop the steady block to 3 km.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 12,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 5,
+     "zone": "M",
+     "name": "Steady"
+    }
+   ]
   },
   {
    "day_offset": 70,
    "type": "easy",
    "title": "8 km easy + 6 x 20s strides",
    "km": 8.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 71,
@@ -511,7 +1479,35 @@
    "type": "interval",
    "title": "11 km: 3 x 1 km at I pace",
    "km": 11.0,
-   "description": "3.5 km warm-up, 3 x 1 km at I pace with 3 min easy jog recoveries (keep the intensity, cut the volume), 3 km cool-down"
+   "description": "3.5 km warm-up, 3 x 1 km at I pace with 3 min easy jog recoveries (keep the intensity, cut the volume), 3 km cool-down",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 3.5,
+     "zone": "E"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "I",
+       "km": 1
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 3
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 3,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 73,
@@ -525,7 +1521,30 @@
    "type": "easy",
    "title": "7 km easy + 6 x 20s strides",
    "km": 7.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 6,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 75,
@@ -539,14 +1558,50 @@
    "type": "long",
    "title": "Long run 12 km (Q2)",
    "km": 12.0,
-   "description": "first 10 km easy, last 2 km at marathon pace. Taper: keep it smooth and relaxed."
+   "description": "first 10 km easy, last 2 km at marathon pace. Taper: keep it smooth and relaxed.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 10,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2,
+     "zone": "M",
+     "name": "M pace"
+    }
+   ]
   },
   {
    "day_offset": 77,
    "type": "easy",
    "title": "6 km easy + 4 x 20s strides",
    "km": 6.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 5,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 78,
@@ -560,7 +1615,35 @@
    "type": "threshold",
    "title": "8 km: 3 x 1 km at T pace",
    "km": 8.0,
-   "description": "2 km warm-up, 3 x 1 km at T pace with 2 min easy jog (controlled, not a race effort), 2 km cool-down"
+   "description": "2 km warm-up, 3 x 1 km at T pace with 2 min easy jog (controlled, not a race effort), 2 km cool-down",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2,
+     "zone": "E"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "km": 1
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 2
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
   },
   {
    "day_offset": 80,
@@ -574,7 +1657,30 @@
    "type": "easy",
    "title": "4 km very easy + 3 x 100m strides",
    "km": 4.0,
-   "description": ""
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 3.5,
+     "zone": "E"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "s": 15,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
   },
   {
    "day_offset": 82,

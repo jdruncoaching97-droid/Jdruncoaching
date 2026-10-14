@@ -18,6 +18,7 @@ create table if not exists public.plan_sessions (
   session_type text not null default 'easy',
   target_km numeric(5,1),
   description text,
+  steps jsonb,
   created_at timestamptz not null default now()
 );
 create index if not exists plan_sessions_athlete_date on public.plan_sessions (athlete_id, session_date);
