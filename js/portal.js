@@ -192,7 +192,34 @@
   }
 
   /* ---------- coach ---------- */
-  var COACH_TABS = [['athletes', 'Athletes'], ['paces', 'Paces']];
+  var COACH_TABS = [['athletes', 'Athletes'], ['enquiries', 'Enquiries'], ['paces', 'Paces']];
+
+  async function coachEnquiries() {
+    var r = await sb.from('enquiries').select('*').order('created_at', { ascending: false }).limit(100);
+    var list = r.data || [], fresh = list.filter(function (e) { return !e.handled; }).length;
+    var cards = list.map(function (e) {
+      var d = new Date(e.created_at);
+      return '<div class="panel"><div class="row"><h2 style="margin:0">' + esc(e.name) + (e.handled ? '' : ' <span class="chip flag">New</span>') + '</h2><span class="muted">' + fmtDay(d) + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') + '</span></div>' +
+        '<p><a href="mailto:' + esc(e.email) + '">' + esc(e.email) + '</a></p>' +
+        (e.goal ? '<p><strong>Goal:</strong> ' + esc(e.goal) + '</p>' : '') +
+        (e.background ? '<p style="white-space:pre-wrap">' + esc(e.background) + '</p>' : '') +
+        '<div class="row" style="justify-content:flex-start"><button class="btn small ' + (e.handled ? 'ghost' : '') + '" data-handled="' + esc(e.id) + '" data-to="' + (e.handled ? 'false' : 'true') + '">' + (e.handled ? 'Mark as new' : 'Mark as handled') + '</button><button class="link" data-delenq="' + esc(e.id) + '">Delete</button></div></div>';
+    }).join('');
+    shell(COACH_TABS, '<h1>Enquiries</h1>' + dbError(r.error) + (list.length ? '<p class="muted">' + fresh + ' new</p>' + cards : '<p class="empty">No enquiries yet. They appear here when someone uses the form on your site.</p>'));
+    app.querySelectorAll('[data-handled]').forEach(function (b) {
+      b.onclick = async function () {
+        var u = await sb.from('enquiries').update({ handled: b.dataset.to === 'true' }).eq('id', b.dataset.handled);
+        if (u.error) alert(u.error.message); else coachEnquiries();
+      };
+    });
+    app.querySelectorAll('[data-delenq]').forEach(function (b) {
+      b.onclick = async function () {
+        if (!confirm('Delete this enquiry?')) return;
+        var d = await sb.from('enquiries').delete().eq('id', b.dataset.delenq);
+        if (d.error) alert(d.error.message); else coachEnquiries();
+      };
+    });
+  }
 
   async function coachAthletes() {
     var r = await sb.from('profiles').select('*').eq('role', 'athlete').order('full_name');
@@ -287,6 +314,7 @@
     if (!state.profile) { app.innerHTML = '<p class="loading">Loading</p>'; return; }
     if (state.profile.role === 'coach') {
       if (state.tab === 'paces') { shell(COACH_TABS, calcView(null)); return bindCalc(); }
+      if (state.tab === 'enquiries') return coachEnquiries();
       state.tab = 'athletes';
       return state.athlete ? coachAthlete() : coachAthletes();
     }
