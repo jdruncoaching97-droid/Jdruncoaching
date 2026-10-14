@@ -128,27 +128,121 @@
     });
   }
 
+  /* ---------- comments + weekly summary ---------- */
+  async function loadComments(athleteId) {
+    var r = await sb.from('comments').select('*').eq('athlete_id', athleteId).order('created_at').limit(400);
+    var m = { log: {}, chk: {} };
+    (r.data || []).forEach(function (c) { var k = c.log_id ? 'log' : 'chk', id = c.log_id || c.checkin_id; (m[k][id] = m[k][id] || []).push(c); });
+    return m;
+  }
+  function cmtHtml(list, kind, id, who) {
+    var items = (list || []).map(function (c) {
+      var mine = c.author_id === state.user.id;
+      return '<div class="cmt' + (mine ? ' mine' : '') + '"><b>' + esc(mine ? 'You' : who) + '</b> <span class="muted">' + fmtDay(new Date(c.created_at)) + '</span><div>' + esc(c.body) + '</div></div>';
+    }).join('');
+    return '<div class="cmts">' + items + '<form class="cform" data-ckind="' + kind + '" data-cid="' + esc(id) + '"><input name="b" maxlength="1000" required placeholder="' + (state.profile.role === 'coach' ? 'Comment' : 'Reply') + '" aria-label="Comment"><button class="btn small" type="submit">Send</button></form></div>';
+  }
+  function bindComments(refresh) {
+    app.querySelectorAll('.cform').forEach(function (f) {
+      f.onsubmit = async function (e) {
+        e.preventDefault();
+        var body = f.elements.b.value.trim(); if (!body) return;
+        var row = { body: body }; row[f.dataset.ckind === 'log' ? 'log_id' : 'checkin_id'] = f.dataset.cid;
+        var r = await sb.from('comments').insert(row);
+        if (r.error) alert(r.error.message); else refresh();
+      };
+    });
+  }
+  function logSummary(l, noKm) {
+    var bits = [];
+    if (!noKm) bits.push(esc(l.distance_km) + ' km');
+    bits.push(pacePerKm(Number(l.distance_km), l.duration_sec));
+    if (l.rpe) bits.push('RPE ' + esc(l.rpe));
+    if (l.niggle) bits.push('niggle ' + esc(l.niggle) + (l.niggle_area ? ' (' + esc(l.niggle_area) + ')' : ''));
+    return bits.join(' | ');
+  }
+  var NO_LOG_TYPES = { strength: 1, rest: 1, cross: 1 };
+  async function weeksSummary(athleteId, endMonday) {
+    var from = addDays(endMonday, -21), to = addDays(endMonday, 6);
+    var q = await Promise.all([
+      sb.from('plan_sessions').select('id,session_date,session_type,target_km').eq('athlete_id', athleteId).gte('session_date', iso(from)).lte('session_date', iso(to)),
+      sb.from('session_logs').select('plan_session_id,log_date,distance_km').eq('athlete_id', athleteId).gte('log_date', iso(from)).lte('log_date', iso(to))]);
+    var ps = q[0].data || [], ls = q[1].data || [], rows = '';
+    for (var i = 0; i < 4; i++) {
+      var a = iso(addDays(from, 7 * i)), b = iso(addDays(from, 7 * i + 6));
+      var wp = ps.filter(function (x) { return x.session_date >= a && x.session_date <= b; });
+      var wl = ls.filter(function (x) { return x.log_date >= a && x.log_date <= b; });
+      var plannedKm = wp.reduce(function (t, x) { return t + Number(x.target_km || 0); }, 0);
+      var loggedKm = wl.reduce(function (t, x) { return t + Number(x.distance_km); }, 0);
+      var runs = wp.filter(function (x) { return !NO_LOG_TYPES[x.session_type] && Number(x.target_km) > 0; });
+      var done = runs.filter(function (x) { return wl.some(function (l) { return l.plan_session_id === x.id; }); }).length;
+      var pct = plannedKm > 0 ? Math.round(loggedKm / plannedKm * 100) : null;
+      rows += '<tr><td data-label="Week of">' + fmtDay(addDays(from, 7 * i)) + '</td><td data-label="Planned">' + plannedKm.toFixed(1) + ' km</td><td data-label="Logged">' + loggedKm.toFixed(1) + ' km</td>' +
+        '<td data-label="Done">' + (pct == null ? '-' : '<span class="bar"><i style="width:' + Math.min(pct, 100) + '%"></i></span> ' + pct + '%') + '</td><td data-label="Runs done">' + done + ' of ' + runs.length + '</td></tr>';
+    }
+    return '<h2>Planned vs logged, last 4 weeks</h2><div class="tablewrap"><table><thead><tr><th>Week of</th><th>Planned</th><th>Logged</th><th>Done</th><th>Runs done</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+  function checkinHtml(c, cm, who) {
+    var low = c.sleep <= 2 || c.energy <= 2 || c.mood <= 2 || c.soreness >= 4;
+    return '<div class="panel"><h3 style="margin:0 0 6px">Week of ' + fmtDay(parseISO(c.week_start)) + (low ? ' <span class="chip flag">Check</span>' : '') + '</h3>' +
+      '<p class="muted" style="margin:0 0 6px">Sleep ' + c.sleep + '/5 | Energy ' + c.energy + '/5 | Mood ' + c.mood + '/5 | Soreness ' + c.soreness + '/10' + (c.soreness_area ? ' (' + esc(c.soreness_area) + ')' : '') + '</p>' +
+      (c.notes ? '<p style="white-space:pre-wrap;margin:0 0 6px">' + esc(c.notes) + '</p>' : '') + cmtHtml((cm.chk || {})[c.id], 'chk', c.id, who) + '</div>';
+  }
+  async function athleteCheckin() {
+    var uid = state.user.id, mon = mondayOf(new Date());
+    var r = await sb.from('checkins').select('*').eq('athlete_id', uid).order('week_start', { ascending: false }).limit(12);
+    var list = r.data || [], cm = await loadComments(uid);
+    var weeks = [mon, addDays(mon, -7)];
+    function opt(from, to, sel, lo, hi) { var o = ''; for (var n = from; n <= to; n++) o += '<option value="' + n + '"' + (n === sel ? ' selected' : '') + '>' + n + (n === from && lo ? ' (' + lo + ')' : '') + (n === to && hi ? ' (' + hi + ')' : '') + '</option>'; return o; }
+    shell(ATHLETE_TABS, '<h1>Weekly check-in</h1>' + dbError(r.error) +
+      '<div class="panel"><form class="stack" id="chkf"><label>Week<select name="week">' + weeks.map(function (w, i) { return '<option value="' + iso(w) + '">' + (i ? 'Last week' : 'This week') + ' (from ' + fmtDay(w) + ')</option>'; }).join('') + '</select></label>' +
+      '<div class="grid3"><label>Sleep<select name="sleep">' + opt(1, 5, 3, 'poor', 'great') + '</select></label><label>Energy<select name="energy">' + opt(1, 5, 3, 'flat', 'great') + '</select></label><label>Mood<select name="mood">' + opt(1, 5, 3, 'low', 'great') + '</select></label></div>' +
+      '<div class="grid2"><label>Soreness<select name="soreness">' + opt(0, 10, 0, 'none', 'worst') + '</select></label><label>Where?<input name="area" maxlength="120" placeholder="Left calf, right shin"></label></div>' +
+      '<label>How was the week?<textarea name="notes" maxlength="1500" placeholder="Work, stress, sessions that felt hard or easy, questions for me"></textarea></label>' +
+      '<div id="chkmsg"></div><div><button class="btn" type="submit">Save check-in</button></div></form></div>' +
+      '<h2>Past check-ins</h2>' + (list.length ? list.map(function (c) { return checkinHtml(c, cm, 'Coach'); }).join('') : '<p class="empty">No check-ins yet.</p>'));
+    var f = $('#chkf');
+    function fill() {
+      var ex = list.filter(function (c) { return c.week_start === f.elements.week.value; })[0];
+      f.elements.sleep.value = ex ? ex.sleep : 3; f.elements.energy.value = ex ? ex.energy : 3; f.elements.mood.value = ex ? ex.mood : 3;
+      f.elements.soreness.value = ex ? ex.soreness : 0; f.elements.area.value = ex ? (ex.soreness_area || '') : ''; f.elements.notes.value = ex ? (ex.notes || '') : '';
+    }
+    f.elements.week.onchange = fill; fill();
+    f.onsubmit = async function (e) {
+      e.preventDefault();
+      var row = { athlete_id: uid, week_start: f.elements.week.value, sleep: Number(f.elements.sleep.value), energy: Number(f.elements.energy.value), mood: Number(f.elements.mood.value),
+        soreness: Number(f.elements.soreness.value), soreness_area: f.elements.area.value.trim() || null, notes: f.elements.notes.value.trim() || null };
+      var res = await sb.from('checkins').upsert(row, { onConflict: 'athlete_id,week_start' });
+      if (res.error) { $('#chkmsg').innerHTML = dbError(res.error); return; }
+      athleteCheckin();
+    };
+    bindComments(athleteCheckin);
+  }
+
   /* ---------- athlete ---------- */
-  var ATHLETE_TABS = [['week', 'This week'], ['log', 'Log a run'], ['history', 'History'], ['paces', 'Paces']];
+  var ATHLETE_TABS = [['week', 'This week'], ['log', 'Log a run'], ['check', 'Check-in'], ['history', 'History'], ['paces', 'Paces']];
 
   async function athleteWeek() {
     var uid = state.user.id, ws = state.weekStart, we = addDays(ws, 6);
     var q = await Promise.all([
       sb.from('plan_sessions').select('*').eq('athlete_id', uid).gte('session_date', iso(ws)).lte('session_date', iso(we)).order('session_date'),
-      sb.from('session_logs').select('*').eq('athlete_id', uid).gte('log_date', iso(ws)).lte('log_date', iso(we)).order('log_date')]);
+      sb.from('session_logs').select('*').eq('athlete_id', uid).gte('log_date', iso(ws)).lte('log_date', iso(we)).order('log_date'),
+      loadComments(uid), weeksSummary(uid, ws)]);
+    var cm = q[2], summary = q[3];
     var sessions = q[0].data || [], logs = q[1].data || [], today = iso(new Date()), days = '';
     for (var i = 0; i < 7; i++) {
       var d = addDays(ws, i), key = iso(d);
       var ss = sessions.filter(function (s) { return s.session_date === key; });
       var ll = logs.filter(function (l) { return l.log_date === key; });
       var body = ss.map(function (s) {
-        var done = logs.some(function (l) { return l.plan_session_id === s.id; });
+        var dl = logs.filter(function (l) { return l.plan_session_id === s.id; })[0], done = !!dl;
         return '<div class="sess"><h3><span class="chip' + (done ? ' done' : '') + '">' + (done ? 'Logged' : esc(TYPES[s.session_type] || s.session_type)) + '</span>' + esc(s.title) + (s.target_km ? ' <span class="muted">(' + esc(s.target_km) + ' km)</span>' : '') + '</h3>' +
           (s.description ? '<p>' + esc(s.description) + '</p>' : '') +
+          (dl ? '<p class="muted">Logged: ' + logSummary(dl) + '</p>' + cmtHtml(cm.log[dl.id], 'log', dl.id, 'Coach') : '') +
           (done || s.session_type === 'rest' ? '' : '<div><button class="btn small ghost" data-log="' + s.id + '" data-date="' + key + '">Log this session</button>' + garminBtn(s) + '</div>') + '</div>';
       }).join('');
       var extra = ll.filter(function (l) { return !l.plan_session_id; }).map(function (l) {
-        return '<div class="sess"><h3><span class="chip done">Logged</span>' + esc(l.distance_km) + ' km</h3><p class="muted">' + esc(V.fmtTime(l.duration_sec)) + ' | ' + pacePerKm(Number(l.distance_km), l.duration_sec) + '</p></div>';
+        return '<div class="sess"><h3><span class="chip done">Logged</span>' + esc(l.distance_km) + ' km</h3><p class="muted">' + esc(V.fmtTime(l.duration_sec)) + ' | ' + logSummary(l, true) + '</p>' + cmtHtml(cm.log[l.id], 'log', l.id, 'Coach') + '</div>';
       }).join('');
       days += '<div class="day' + (key === today ? ' today' : '') + '"><div class="date">' + DOW[i] + '<small>' + fmtDay(d) + '</small></div><div class="body">' +
         ((body || extra) ? body + extra : '<span class="muted">Nothing planned</span>') + '</div></div>';
@@ -159,7 +253,8 @@
       '<h1>This week</h1>' + dbError(q[0].error || q[1].error) +
       (state.profile.coach_id ? '' : '<p class="notice">Your coach hasn\'t added you yet. You can log runs now, and plans will appear here once they do.</p>') +
       '<div class="weeknav"><button class="btn small ghost" id="prev">Previous</button><strong>' + fmtWeek(ws) + '</strong><button class="btn small ghost" id="next">Next</button><button class="btn small ghost" id="thisweek">This week</button></div>' +
-      '<p class="muted">Logged ' + logged.toFixed(1) + ' km' + (planned ? ' of ' + planned.toFixed(1) + ' km planned' : '') + '</p><div class="week">' + days + '</div>');
+      '<p class="muted">Logged ' + logged.toFixed(1) + ' km' + (planned ? ' of ' + planned.toFixed(1) + ' km planned' : '') + '</p><div class="week">' + days + '</div>' + summary);
+    bindComments(athleteWeek);
     $('#prev').onclick = function () { state.weekStart = addDays(ws, -7); athleteWeek(); };
     $('#next').onclick = function () { state.weekStart = addDays(ws, 7); athleteWeek(); };
     $('#thisweek').onclick = function () { state.weekStart = mondayOf(new Date()); athleteWeek(); };
@@ -178,6 +273,7 @@
       '<label>Time (mm:ss or h:mm:ss)<input name="time" required placeholder="52:30"></label></div>' +
       '<div class="grid2"><label>Effort (RPE 1 to 10)<select name="rpe"><option value="">Not rated</option>' + [1,2,3,4,5,6,7,8,9,10].map(function (n) { return '<option>' + n + '</option>'; }).join('') + '</select></label>' +
       '<label>Niggle score (0 none, 10 worst)<select name="niggle">' + [0,1,2,3,4,5,6,7,8,9,10].map(function (n) { return '<option>' + n + '</option>'; }).join('') + '</select></label></div>' +
+      '<label>Where is the niggle? (optional)<input name="area" maxlength="60" placeholder="Left calf, right shin"></label>' +
       '<label>Notes<textarea name="notes" placeholder="Paces, how it felt, shins or calves"></textarea></label>' +
       '<div id="logmsg"></div><div><button class="btn" type="submit">Save run</button></div></form></div>');
     $('#logf').onsubmit = async function (e) {
@@ -186,7 +282,9 @@
       if (!(sec > 0)) { msg.innerHTML = '<p class="err" role="alert">Enter the time as mm:ss or h:mm:ss, for example 52:30.</p>'; return; }
       var row = { athlete_id: state.user.id, log_date: f.get('date'), distance_km: Number(f.get('km')), duration_sec: Math.round(sec),
         rpe: f.get('rpe') ? Number(f.get('rpe')) : null, niggle: Number(f.get('niggle')), notes: (f.get('notes') || '').trim() || null, plan_session_id: pre.plan_session_id || null };
+      var area = (f.get('area') || '').trim(); if (area && row.niggle > 0) row.niggle_area = area;
       var r = await sb.from('session_logs').insert(row);
+      if (r.error && row.niggle_area && /niggle_area/i.test(r.error.message || '')) { delete row.niggle_area; row.notes = ((row.notes ? row.notes + ' ' : '') + '(Niggle: ' + area + ')').slice(0, 2000); r = await sb.from('session_logs').insert(row); }
       if (r.error) { msg.innerHTML = dbError(r.error); return; }
       state.tab = 'week'; state.weekStart = mondayOf(parseISO(row.log_date)); route();
     };
@@ -194,8 +292,9 @@
 
   async function history() {
     var r = await sb.from('session_logs').select('*').eq('athlete_id', state.user.id).order('log_date', { ascending: false }).limit(60);
-    var logs = r.data || [];
-    shell(ATHLETE_TABS, '<h1>History</h1>' + dbError(r.error) + (logs.length ? logTable(logs, true) : '<p class="empty">No runs logged yet. Log your first run from the Log a run tab.</p>'));
+    var logs = r.data || [], cm = await loadComments(state.user.id);
+    shell(ATHLETE_TABS, '<h1>History</h1>' + dbError(r.error) + (logs.length ? logTable(logs, true, cm, 'Coach') : '<p class="empty">No runs logged yet. Log your first run from the Log a run tab.</p>'));
+    bindComments(history);
     app.querySelectorAll('[data-del]').forEach(function (b) {
       b.onclick = async function () {
         if (!confirm('Delete this run?')) return;
@@ -204,12 +303,12 @@
       };
     });
   }
-  function logTable(logs, canDelete) {
+  function logTable(logs, canDelete, cm, who) {
     return '<div class="tablewrap"><table><thead><tr><th>Date</th><th>Distance</th><th>Time</th><th>Pace</th><th>RPE</th><th>Niggle</th><th>Notes</th>' + (canDelete ? '<th></th>' : '') + '</tr></thead><tbody>' +
       logs.map(function (l) {
         var n = l.niggle || 0;
         return '<tr><td data-label="Date">' + fmtDay(parseISO(l.log_date)) + '</td><td data-label="Distance">' + esc(l.distance_km) + ' km</td><td data-label="Time">' + V.fmtTime(l.duration_sec) + '</td><td data-label="Pace">' + pacePerKm(Number(l.distance_km), l.duration_sec) + '</td><td data-label="RPE">' + esc(l.rpe || '') + '</td>' +
-          '<td data-label="Niggle">' + (n >= 4 ? '<span class="chip flag">' + n + '</span>' : n) + '</td><td data-label="Notes">' + esc(l.notes || '') + '</td>' +
+          '<td data-label="Niggle">' + (n >= 4 ? '<span class="chip flag">' + n + '</span>' : n) + (l.niggle_area ? '<div class="muted">' + esc(l.niggle_area) + '</div>' : '') + '</td><td data-label="Notes">' + esc(l.notes || '') + (cm ? cmtHtml(cm.log[l.id], 'log', l.id, who) : '') + '</td>' +
           (canDelete ? '<td data-label=""><button class="link" data-del="' + esc(l.id) + '">Delete</button></td>' : '') + '</tr>';
       }).join('') + '</tbody></table></div>';
   }
@@ -247,11 +346,13 @@
 
   async function coachAthletes() {
     var r = await sb.from('profiles').select('*').eq('role', 'athlete').order('full_name');
-    var athletes = r.data || [], ids = athletes.map(function (a) { return a.id; }), logs = [];
+    var athletes = r.data || [], ids = athletes.map(function (a) { return a.id; }), logs = [], checks = [];
     if (ids.length) {
       var since = iso(addDays(new Date(), -14));
       var lr = await sb.from('session_logs').select('athlete_id,log_date,distance_km,niggle').in('athlete_id', ids).gte('log_date', since);
       logs = lr.data || [];
+      var cr = await sb.from('checkins').select('athlete_id,week_start,sleep,energy,mood,soreness').in('athlete_id', ids).order('week_start', { ascending: false }).limit(200);
+      checks = cr.data || [];
     }
     var wk = iso(addDays(new Date(), -7));
     var rows = athletes.map(function (a) {
@@ -259,13 +360,15 @@
       var last = mine.reduce(function (m, l) { return l.log_date > m ? l.log_date : m; }, '');
       var km = mine.filter(function (l) { return l.log_date > wk; }).reduce(function (s, l) { return s + Number(l.distance_km); }, 0);
       var flag = mine.some(function (l) { return l.log_date > wk && (l.niggle || 0) >= 4; });
+      var lastChk = checks.filter(function (c) { return c.athlete_id === a.id; })[0];
+      var lowChk = lastChk && lastChk.week_start >= iso(addDays(new Date(), -14)) && (lastChk.sleep <= 2 || lastChk.energy <= 2 || lastChk.mood <= 2 || lastChk.soreness >= 4);
       var mine_ = a.coach_id === state.user.id;
       return '<tr><td data-label="Athlete">' + (mine_ ? '<button class="link" data-open="' + esc(a.id) + '">' + esc(a.full_name || a.email) + '</button>' : esc(a.full_name || a.email)) + '<div class="muted">' + esc(a.email || '') + '</div></td>' +
-        '<td data-label="VDOT">' + (a.vdot ? esc(a.vdot) : '-') + '</td><td data-label="Last run">' + (last ? fmtDay(parseISO(last)) : 'No runs') + '</td><td data-label="Last 7 days">' + km.toFixed(1) + ' km</td>' +
-        '<td data-label="">' + (flag ? '<span class="chip flag">Niggle 4+</span>' : '') + (mine_ ? '' : '<button class="btn small" data-claim="' + esc(a.id) + '">Add to my athletes</button>') + '</td></tr>';
+        '<td data-label="VDOT">' + (a.vdot ? esc(a.vdot) : '-') + '</td><td data-label="Last run">' + (last ? fmtDay(parseISO(last)) : 'No runs') + '</td><td data-label="Last 7 days">' + km.toFixed(1) + ' km</td><td data-label="Check-in">' + (lastChk ? fmtDay(parseISO(lastChk.week_start)) : '-') + '</td>' +
+        '<td data-label="">' + (flag ? '<span class="chip flag">Niggle 4+</span>' : '') + (lowChk ? '<span class="chip flag">Check-in low</span>' : '') + (mine_ ? '' : '<button class="btn small" data-claim="' + esc(a.id) + '">Add to my athletes</button>') + '</td></tr>';
     }).join('');
     shell(COACH_TABS, '<h1>Athletes</h1>' + dbError(r.error) + (athletes.length ?
-      '<div class="tablewrap"><table><thead><tr><th>Athlete</th><th>VDOT</th><th>Last run</th><th>Last 7 days</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div>' :
+      '<div class="tablewrap"><table><thead><tr><th>Athlete</th><th>VDOT</th><th>Last run</th><th>Last 7 days</th><th>Check-in</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div>' :
       '<p class="empty">No athletes yet. Ask athletes to create an account on this page, then add them here.</p>'));
     app.querySelectorAll('[data-open]').forEach(function (b) { b.onclick = function () { state.athlete = athletes.find(function (a) { return a.id === b.dataset.open; }); state.athleteWeek = mondayOf(new Date()); coachAthlete(); }; });
     app.querySelectorAll('[data-claim]').forEach(function (b) {
@@ -280,17 +383,25 @@
     var a = state.athlete, ws = state.athleteWeek, we = addDays(ws, 6);
     var q = await Promise.all([
       sb.from('plan_sessions').select('*').eq('athlete_id', a.id).gte('session_date', iso(ws)).lte('session_date', iso(we)).order('session_date'),
-      sb.from('session_logs').select('*').eq('athlete_id', a.id).order('log_date', { ascending: false }).limit(20)]);
-    var sessions = q[0].data || [], logs = q[1].data || [];
+      sb.from('session_logs').select('*').eq('athlete_id', a.id).order('log_date', { ascending: false }).limit(120),
+      loadComments(a.id), weeksSummary(a.id, ws),
+      sb.from('checkins').select('*').eq('athlete_id', a.id).order('week_start', { ascending: false }).limit(6)]);
+    var sessions = q[0].data || [], allLogs = q[1].data || [], logs = allLogs.slice(0, 20), cm = q[2], summary = q[3], checks = q[4].data || [];
+    var who = (a.full_name || 'Athlete').split(' ')[0], todayIso = iso(new Date());
     var planned = sessions.reduce(function (s, x) { return s + Number(x.target_km || 0); }, 0);
+    function loggedCell(s) {
+      var l = allLogs.filter(function (x) { return x.plan_session_id === s.id; })[0];
+      if (l) return '<span class="chip done">Done</span>' + logSummary(l);
+      return (!NO_LOG_TYPES[s.session_type] && s.session_date < todayIso && Number(s.target_km) > 0) ? '<span class="muted">Not logged</span>' : '';
+    }
     var list = sessions.map(function (s) {
-      return '<tr><td data-label="Day">' + DOW[(parseISO(s.session_date).getDay() + 6) % 7] + ' ' + fmtDay(parseISO(s.session_date)) + '</td><td data-label="Session"><span class="chip">' + esc(TYPES[s.session_type] || s.session_type) + '</span>' + esc(s.title) + '<div class="muted" style="white-space:pre-wrap">' + esc(s.description || '') + '</div></td><td data-label="km">' + esc(s.target_km || '') + '</td><td data-label="">' + garminBtn(s) + ' <button class="link" data-delsess="' + esc(s.id) + '">Delete</button></td></tr>';
+      return '<tr><td data-label="Day">' + DOW[(parseISO(s.session_date).getDay() + 6) % 7] + ' ' + fmtDay(parseISO(s.session_date)) + '</td><td data-label="Session"><span class="chip">' + esc(TYPES[s.session_type] || s.session_type) + '</span>' + esc(s.title) + '<div class="muted" style="white-space:pre-wrap">' + esc(s.description || '') + '</div></td><td data-label="km">' + esc(s.target_km || '') + '</td><td data-label="Logged">' + loggedCell(s) + '</td><td data-label="">' + garminBtn(s) + ' <button class="link" data-delsess="' + esc(s.id) + '">Delete</button></td></tr>';
     }).join('');
     shell(COACH_TABS,
       '<p><button class="link" id="back">Back to athletes</button></p><h1>' + esc(a.full_name || a.email) + '</h1>' + dbError(q[0].error || q[1].error) +
       '<div class="panel"><form class="row" id="vdotf"><label>VDOT<input name="v" type="number" step="0.1" min="20" max="90" value="' + esc(a.vdot || '') + '" style="max-width:9ch"></label><button class="btn small" type="submit">Save VDOT</button><span id="vmsg" class="muted"></span></form>' + (a.vdot ? '<div style="margin-top:14px">' + pacesHtml(Number(a.vdot)) + '</div>' : '') + '</div>' +
       '<h2>Plan: ' + fmtWeek(ws) + '</h2><div class="weeknav"><button class="btn small ghost" id="prev">Previous</button><button class="btn small ghost" id="next">Next</button><button class="btn small ghost" id="copyprev">Copy previous week here</button><span class="muted">Planned ' + planned.toFixed(1) + ' km</span></div>' +
-      (sessions.length ? '<div class="tablewrap"><table><thead><tr><th>Day</th><th>Session</th><th>km</th><th></th></tr></thead><tbody>' + list + '</tbody></table></div>' : '<p class="empty">No sessions this week.</p>') +
+      (sessions.length ? '<div class="tablewrap"><table><thead><tr><th>Day</th><th>Session</th><th>km</th><th>Logged</th><th></th></tr></thead><tbody>' + list + '</tbody></table></div>' : '<p class="empty">No sessions this week.</p>') +
       '<div class="panel" style="margin-top:20px"><h2>Add a session</h2><form class="stack" id="addf"><div class="grid3"><label>Date<input type="date" name="date" required value="' + iso(ws) + '"></label>' +
       '<label>Type<select name="type">' + Object.keys(TYPES).map(function (k) { return '<option value="' + k + '">' + TYPES[k] + '</option>'; }).join('') + '</select></label>' +
       '<label>Target km<input type="number" name="km" step="0.1" min="0" max="200"></label></div>' +
@@ -299,7 +410,10 @@
       '<div class="panel"><h2>Load a template plan</h2><p class="muted">Adds every session from a saved plan to this athlete\'s calendar. Pick the Monday that starts Week 1.</p>' +
       '<form class="stack" id="tplf"><div class="grid2"><label>Template<select name="tpl"><option value="">Loading</option></select></label>' +
       '<label>Week 1 starts (a Monday)<input type="date" name="start" required value="' + iso(mondayOf(new Date())) + '"></label></div><div id="tplmsg"></div><div><button class="btn" type="submit">Load plan</button></div></form></div>' +
-      '<h2>Recent runs</h2>' + (logs.length ? logTable(logs, false) : '<p class="empty">No runs logged yet.</p>'));
+      summary +
+      '<h2>Check-ins</h2>' + (checks.length ? checks.map(function (c) { return checkinHtml(c, cm, who); }).join('') : '<p class="empty">No check-ins yet.</p>') +
+      '<h2>Recent runs</h2>' + (logs.length ? logTable(logs, false, cm, who) : '<p class="empty">No runs logged yet.</p>'));
+    bindComments(coachAthlete);
     $('#back').onclick = function () { state.athlete = null; coachAthletes(); };
     $('#prev').onclick = function () { state.athleteWeek = addDays(ws, -7); coachAthlete(); };
     $('#next').onclick = function () { state.athleteWeek = addDays(ws, 7); coachAthlete(); };
@@ -374,6 +488,7 @@
       return state.athlete ? coachAthlete() : coachAthletes();
     }
     if (state.tab === 'log') return logForm();
+    if (state.tab === 'check') return athleteCheckin();
     if (state.tab === 'history') return history();
     if (state.tab === 'paces') { shell(ATHLETE_TABS, calcView(state.profile.vdot)); return bindCalc(); }
     state.tab = 'week'; return athleteWeek();

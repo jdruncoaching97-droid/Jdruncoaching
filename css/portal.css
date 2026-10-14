@@ -68,3 +68,14 @@ th { font-weight: 600; background: var(--maroon-tint); }
   .tablewrap td[data-label=""]::before { content: none; }
   .tablewrap td:empty { display: none; }
 }
+
+/* comments, check-ins, summary bars */
+.cmts { margin-top: 8px; display: grid; gap: 6px; }
+.cmt { border-left: 3px solid var(--maroon); background: var(--maroon-tint); padding: 6px 10px; font-size: .9rem; }
+.cmt.mine { border-left-color: var(--ink-soft); background: var(--mist); }
+.cmt b { font-weight: 600; }
+.cform { display: flex; gap: 8px; align-items: center; }
+.cform input { flex: 1; min-width: 0; padding: .45em .6em; }
+.bar { display: inline-block; width: 70px; height: 8px; background: var(--mist); border: 1px solid var(--rule); vertical-align: middle; }
+.bar i { display: block; height: 100%; background: var(--maroon); }
+td, .cmt, .sess p { overflow-wrap: anywhere; }
