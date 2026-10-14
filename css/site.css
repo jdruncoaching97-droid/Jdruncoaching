@@ -60,3 +60,22 @@ footer a { color: #fff; }
 
 .about ul { margin: 0 0 1em; padding-left: 1.2em; max-width: 58ch; }
 .about li { margin-bottom: .3em; }
+
+.plans { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 32px 0 20px; }
+@media (min-width: 640px) { .plans { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .plans { grid-template-columns: repeat(4, 1fr); } }
+.plan { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--rule); border-top: 4px solid var(--maroon); padding: 28px 22px 22px; }
+.plan h3 { font-size: 1.7rem; margin: 0; }
+.plan .price { font: 500 2.1rem/1.1 var(--serif); color: var(--maroon); margin: 8px 0 18px; }
+.plan .price small { font: 400 .85rem var(--sans); color: var(--ink-soft); }
+.plan ul { list-style: none; margin: 0 0 24px; padding: 0; flex: 1; }
+.plan li { padding: 9px 0; border-top: 1px solid var(--rule); font-size: .95rem; }
+.plan .btn { text-align: center; }
+.badge { position: absolute; top: -4px; right: 14px; background: var(--maroon); color: #fff; font-size: .75rem; font-weight: 500; padding: 4px 10px; }
+
+.addon { display: grid; gap: 12px 28px; align-items: center; background: var(--maroon-tint); padding: 22px; margin-bottom: 18px; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .addon { grid-template-columns: 1fr auto auto; } }
+.addon h3 { font-size: 1.4rem; margin: 0 0 4px; }
+.addon p { margin: 0; color: var(--ink-soft); max-width: 60ch; }
+.addon .price { font: 500 1.2rem var(--serif); color: var(--maroon); }
+.addon .btn { text-align: center; }

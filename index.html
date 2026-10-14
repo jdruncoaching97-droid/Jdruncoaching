@@ -67,12 +67,61 @@
 <section class="block" id="coaching">
   <div class="wrap">
     <h2>Coaching options</h2>
-    <p class="intro">Send me your goal and where you are now, and I'll recommend an option and confirm pricing.</p>
-    <div class="offers">
-      <div class="offer"><h3>Race plan</h3><p>A single plan for one race, with paces, a taper and race-week guide. Delivered through the portal, with one check-in at the half-way point.</p><span class="price">Enquire</span></div>
-      <div class="offer"><h3>Ongoing coaching</h3><p>Weekly plans, session feedback and a check-in every week. Paces updated as your fitness changes.</p><span class="price">Enquire</span></div>
-      <div class="offer"><h3>Strength and running</h3><p>Ongoing coaching plus a three-day strength program written to fit around your runs.</p><span class="price">Enquire</span></div>
+    <p class="intro">Send me your goal and where you are now, and I'll recommend an option and confirm it's a fit.</p>
+    <div class="plans">
+      <article class="plan">
+        <span class="badge">Most support</span>
+        <h3>Platinum</h3>
+        <p class="price">$250 <small>per month</small></p>
+        <ul>
+          <li>Weekly phone call check-in</li>
+          <li>Personalised run plan with paces from your race times</li>
+          <li>Strength program</li>
+          <li>Athlete portal for your weekly plan and run logging</li>
+        </ul>
+        <a class="btn" href="#enquire" data-plan="Platinum">Apply for Platinum</a>
+      </article>
+      <article class="plan">
+        <h3>Gold</h3>
+        <p class="price">$150 <small>per month</small></p>
+        <ul>
+          <li>Weekly email check-in</li>
+          <li>Personalised run plan with paces from your race times</li>
+          <li>Strength program</li>
+          <li>Athlete portal for your weekly plan and run logging</li>
+        </ul>
+        <a class="btn" href="#enquire" data-plan="Gold">Apply for Gold</a>
+      </article>
+      <article class="plan">
+        <h3>Silver</h3>
+        <p class="price">$100 <small>per month</small></p>
+        <ul>
+          <li>Weekly email check-in</li>
+          <li>Personalised run plan with paces from your race times</li>
+          <li>Athlete portal for your weekly plan and run logging</li>
+        </ul>
+        <a class="btn" href="#enquire" data-plan="Silver">Apply for Silver</a>
+      </article>
+      <article class="plan">
+        <h3>Bronze</h3>
+        <p class="price">$100 <small>once off</small></p>
+        <ul>
+          <li>A once-off run plan for your goal race</li>
+          <li>Paces from your race time</li>
+          <li>10% off if you upgrade to an ongoing option</li>
+        </ul>
+        <a class="btn" href="#enquire" data-plan="Bronze">Apply for Bronze</a>
+      </article>
     </div>
+    <div class="addon">
+      <div>
+        <h3>Return to run plan</h3>
+        <p>For runners coming back after injury or time off. A once-off plan that builds your running back up in steps, shaped by your injury history and how your body responds.</p>
+      </div>
+      <p class="price">Enquire</p>
+      <a class="btn ghost" href="#enquire" data-plan="Return to run plan">Apply for this plan</a>
+    </div>
+    <p class="note">Prices are in Australian dollars. Platinum, Gold and Silver are billed monthly.</p>
   </div>
 </section>
 
@@ -103,6 +152,7 @@
       <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <label>Name <input name="name" required autocomplete="name"></label>
       <label>Email <input type="email" name="email" required autocomplete="email"></label>
+      <label>Option you're interested in <select name="plan"><option value="">Not sure yet</option><option>Platinum</option><option>Gold</option><option>Silver</option><option>Bronze</option><option>Return to run plan</option></select></label>
       <label>Goal race and date <input name="goal" placeholder="For example: 10K, 27 December"></label>
       <label>Recent race or current weekly kilometres <textarea name="background"></textarea></label>
       <button class="btn" type="submit">Send enquiry</button>

@@ -201,6 +201,7 @@
       var d = new Date(e.created_at);
       return '<div class="panel"><div class="row"><h2 style="margin:0">' + esc(e.name) + (e.handled ? '' : ' <span class="chip flag">New</span>') + '</h2><span class="muted">' + fmtDay(d) + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') + '</span></div>' +
         '<p><a href="mailto:' + esc(e.email) + '">' + esc(e.email) + '</a></p>' +
+        (e.plan ? '<p><strong>Option:</strong> ' + esc(e.plan) + '</p>' : '') +
         (e.goal ? '<p><strong>Goal:</strong> ' + esc(e.goal) + '</p>' : '') +
         (e.background ? '<p style="white-space:pre-wrap">' + esc(e.background) + '</p>' : '') +
         '<div class="row" style="justify-content:flex-start"><button class="btn small ' + (e.handled ? 'ghost' : '') + '" data-handled="' + esc(e.id) + '" data-to="' + (e.handled ? 'false' : 'true') + '">' + (e.handled ? 'Mark as new' : 'Mark as handled') + '</button><button class="link" data-delenq="' + esc(e.id) + '">Delete</button></div></div>';

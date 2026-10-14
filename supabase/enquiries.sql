@@ -13,3 +13,5 @@ drop policy if exists enquiries_insert on public.enquiries;
 create policy enquiries_insert on public.enquiries for insert to anon, authenticated with check (handled = false);
 drop policy if exists enquiries_coach on public.enquiries;
 create policy enquiries_coach on public.enquiries for all using (public.is_coach()) with check (public.is_coach());
+
+alter table public.enquiries add column if not exists plan text check (char_length(plan) <= 40);
