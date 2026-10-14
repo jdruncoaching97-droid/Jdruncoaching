@@ -57,3 +57,14 @@ th { font-weight: 600; background: var(--maroon-tint); }
 .paces span { font-size: .8rem; color: var(--ink-soft); }
 .weeknav { display: flex; gap: 8px; align-items: center; margin: 0 0 16px; flex-wrap: wrap; }
 .weeknav strong { min-width: 11ch; }
+
+@media (max-width: 640px) {
+  .tablewrap { border: 0; overflow: visible; }
+  .tablewrap table, .tablewrap tbody, .tablewrap tr, .tablewrap td { display: block; }
+  .tablewrap thead { position: absolute; left: -9999px; }
+  .tablewrap tr { background: #fff; border: 1px solid var(--rule); padding: 10px 12px; margin-bottom: 10px; }
+  .tablewrap td { border: 0; padding: 3px 0; display: flex; gap: 12px; }
+  .tablewrap td::before { content: attr(data-label); font-weight: 600; min-width: 92px; color: var(--ink-soft); flex: none; }
+  .tablewrap td[data-label=""]::before { content: none; }
+  .tablewrap td:empty { display: none; }
+}

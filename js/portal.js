@@ -68,7 +68,7 @@
   function shell(tabs, bodyHtml) {
     var p = state.profile;
     app.innerHTML =
-      '<header class="topbar"><div class="in"><a class="brand" href="./">JD</a><div class="who"><span>' + esc(p.full_name || p.email) + (p.role === 'coach' ? ' (coach)' : '') + '</span><button id="out">Log out</button></div></div></header>' +
+      '<header class="topbar"><div class="in"><a class="brand" href="./">JD</a><div class="who"><span>' + esc(p.full_name || p.email) + (p.role === 'coach' && !/coach/i.test(p.full_name || '') ? ' (coach)' : '') + '</span><button id="out">Log out</button></div></div></header>' +
       '<nav class="tabs" aria-label="Portal"><div class="in">' +
       tabs.map(function (t) { return '<button data-tab="' + t[0] + '"' + (state.tab === t[0] ? ' aria-current="page"' : '') + '>' + t[1] + '</button>'; }).join('') +
       '</div></nav><main class="main" id="view">' + bodyHtml + '</main>';
@@ -185,9 +185,9 @@
     return '<div class="tablewrap"><table><thead><tr><th>Date</th><th>Distance</th><th>Time</th><th>Pace</th><th>RPE</th><th>Niggle</th><th>Notes</th>' + (canDelete ? '<th></th>' : '') + '</tr></thead><tbody>' +
       logs.map(function (l) {
         var n = l.niggle || 0;
-        return '<tr><td>' + fmtDay(parseISO(l.log_date)) + '</td><td>' + esc(l.distance_km) + ' km</td><td>' + V.fmtTime(l.duration_sec) + '</td><td>' + pacePerKm(Number(l.distance_km), l.duration_sec) + '</td><td>' + esc(l.rpe || '') + '</td>' +
-          '<td>' + (n >= 4 ? '<span class="chip flag">' + n + '</span>' : n) + '</td><td>' + esc(l.notes || '') + '</td>' +
-          (canDelete ? '<td><button class="link" data-del="' + esc(l.id) + '">Delete</button></td>' : '') + '</tr>';
+        return '<tr><td data-label="Date">' + fmtDay(parseISO(l.log_date)) + '</td><td data-label="Distance">' + esc(l.distance_km) + ' km</td><td data-label="Time">' + V.fmtTime(l.duration_sec) + '</td><td data-label="Pace">' + pacePerKm(Number(l.distance_km), l.duration_sec) + '</td><td data-label="RPE">' + esc(l.rpe || '') + '</td>' +
+          '<td data-label="Niggle">' + (n >= 4 ? '<span class="chip flag">' + n + '</span>' : n) + '</td><td data-label="Notes">' + esc(l.notes || '') + '</td>' +
+          (canDelete ? '<td data-label=""><button class="link" data-del="' + esc(l.id) + '">Delete</button></td>' : '') + '</tr>';
       }).join('') + '</tbody></table></div>';
   }
 
@@ -209,9 +209,9 @@
       var km = mine.filter(function (l) { return l.log_date > wk; }).reduce(function (s, l) { return s + Number(l.distance_km); }, 0);
       var flag = mine.some(function (l) { return l.log_date > wk && (l.niggle || 0) >= 4; });
       var mine_ = a.coach_id === state.user.id;
-      return '<tr><td>' + (mine_ ? '<button class="link" data-open="' + esc(a.id) + '">' + esc(a.full_name || a.email) + '</button>' : esc(a.full_name || a.email)) + '<div class="muted">' + esc(a.email || '') + '</div></td>' +
-        '<td>' + (a.vdot ? esc(a.vdot) : '') + '</td><td>' + (last ? fmtDay(parseISO(last)) : 'No runs') + '</td><td>' + km.toFixed(1) + ' km</td>' +
-        '<td>' + (flag ? '<span class="chip flag">Niggle 4+</span>' : '') + (mine_ ? '' : '<button class="btn small" data-claim="' + esc(a.id) + '">Add to my athletes</button>') + '</td></tr>';
+      return '<tr><td data-label="Athlete">' + (mine_ ? '<button class="link" data-open="' + esc(a.id) + '">' + esc(a.full_name || a.email) + '</button>' : esc(a.full_name || a.email)) + '<div class="muted">' + esc(a.email || '') + '</div></td>' +
+        '<td data-label="VDOT">' + (a.vdot ? esc(a.vdot) : '-') + '</td><td data-label="Last run">' + (last ? fmtDay(parseISO(last)) : 'No runs') + '</td><td data-label="Last 7 days">' + km.toFixed(1) + ' km</td>' +
+        '<td data-label="">' + (flag ? '<span class="chip flag">Niggle 4+</span>' : '') + (mine_ ? '' : '<button class="btn small" data-claim="' + esc(a.id) + '">Add to my athletes</button>') + '</td></tr>';
     }).join('');
     shell(COACH_TABS, '<h1>Athletes</h1>' + dbError(r.error) + (athletes.length ?
       '<div class="tablewrap"><table><thead><tr><th>Athlete</th><th>VDOT</th><th>Last run</th><th>Last 7 days</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div>' :
@@ -233,7 +233,7 @@
     var sessions = q[0].data || [], logs = q[1].data || [];
     var planned = sessions.reduce(function (s, x) { return s + Number(x.target_km || 0); }, 0);
     var list = sessions.map(function (s) {
-      return '<tr><td>' + DOW[(parseISO(s.session_date).getDay() + 6) % 7] + ' ' + fmtDay(parseISO(s.session_date)) + '</td><td><span class="chip">' + esc(TYPES[s.session_type] || s.session_type) + '</span>' + esc(s.title) + '<div class="muted" style="white-space:pre-wrap">' + esc(s.description || '') + '</div></td><td>' + esc(s.target_km || '') + '</td><td><button class="link" data-delsess="' + esc(s.id) + '">Delete</button></td></tr>';
+      return '<tr><td data-label="Day">' + DOW[(parseISO(s.session_date).getDay() + 6) % 7] + ' ' + fmtDay(parseISO(s.session_date)) + '</td><td data-label="Session"><span class="chip">' + esc(TYPES[s.session_type] || s.session_type) + '</span>' + esc(s.title) + '<div class="muted" style="white-space:pre-wrap">' + esc(s.description || '') + '</div></td><td data-label="km">' + esc(s.target_km || '') + '</td><td data-label=""><button class="link" data-delsess="' + esc(s.id) + '">Delete</button></td></tr>';
     }).join('');
     shell(COACH_TABS,
       '<p><button class="link" id="back">Back to athletes</button></p><h1>' + esc(a.full_name || a.email) + '</h1>' + dbError(q[0].error || q[1].error) +
