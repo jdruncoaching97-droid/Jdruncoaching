@@ -44,7 +44,7 @@
       '<button class="btn" type="submit">' + (reset ? 'Send reset link' : signup ? 'Create account' : 'Log in') + '</button></form>' +
       '<p class="switch">' +
       (mode === 'login' ? '<button class="link" data-m="signup">Create an account</button> &nbsp;|&nbsp; <button class="link" data-m="reset">Forgot password</button>' : '<button class="link" data-m="login">Back to login</button>') +
-      '</p></div>';
+      '</p><p class="muted" style="margin-top:14px"><a href="../privacy.html">Privacy</a></p></div>';
     app.querySelectorAll('[data-m]').forEach(function (b) { b.onclick = function () { renderAuth(b.dataset.m); }; });
     $('#authform').onsubmit = async function (e) {
       e.preventDefault();
@@ -273,6 +273,9 @@
       '<label>Target km<input type="number" name="km" step="0.1" min="0" max="200"></label></div>' +
       '<label>Title<input name="title" required placeholder="3 x 6 min at T, 2 min jog"></label>' +
       '<label>Details<textarea name="desc" placeholder="Warm-up, paces, notes"></textarea></label><div id="addmsg"></div><div><button class="btn" type="submit">Add session</button></div></form></div>' +
+      '<div class="panel"><h2>Load a template plan</h2><p class="muted">Adds every session from a saved plan to this athlete\'s calendar. Pick the Monday that starts Week 1.</p>' +
+      '<form class="stack" id="tplf"><div class="grid2"><label>Template<select name="tpl"><option value="">Loading</option></select></label>' +
+      '<label>Week 1 starts (a Monday)<input type="date" name="start" required value="' + iso(mondayOf(new Date())) + '"></label></div><div id="tplmsg"></div><div><button class="btn" type="submit">Load plan</button></div></form></div>' +
       '<h2>Recent runs</h2>' + (logs.length ? logTable(logs, false) : '<p class="empty">No runs logged yet.</p>'));
     $('#back').onclick = function () { state.athlete = null; coachAthletes(); };
     $('#prev').onclick = function () { state.athleteWeek = addDays(ws, -7); coachAthlete(); };
@@ -298,6 +301,27 @@
         if (d.error) alert(d.error.message); else coachAthlete();
       };
     });
+    var tplSel = $('#tplf [name=tpl]'), tplList = [];
+    fetch('../data/templates.json').then(function (r) { return r.json(); }).then(function (list) {
+      tplList = list; tplSel.innerHTML = list.map(function (t) { return '<option value="' + esc(t.file) + '">' + esc(t.name) + '</option>'; }).join('');
+    }).catch(function () { tplSel.innerHTML = '<option value="">No templates found</option>'; });
+    $('#tplf').onsubmit = async function (e) {
+      e.preventDefault();
+      var f = new FormData(e.target), msg = $('#tplmsg'), start = parseISO(f.get('start'));
+      if (!f.get('tpl')) { msg.innerHTML = '<p class="err" role="alert">No template selected.</p>'; return; }
+      if (start.getDay() !== 1) { msg.innerHTML = '<p class="err" role="alert">Pick a Monday. Week 1 needs to start on a Monday.</p>'; return; }
+      var tr; try { tr = await (await fetch('../data/' + f.get('tpl'))).json(); } catch (x) { msg.innerHTML = '<p class="err" role="alert">Could not load that template.</p>'; return; }
+      var last = addDays(start, tr.weeks * 7 - 1);
+      var ex = await sb.from('plan_sessions').select('id').eq('athlete_id', a.id).gte('session_date', iso(start)).lte('session_date', iso(last));
+      if (ex.error) { msg.innerHTML = dbError(ex.error); return; }
+      if (ex.data.length && !confirm('This athlete already has ' + ex.data.length + ' sessions between ' + fmtDay(start) + ' and ' + fmtDay(last) + '. Load the plan anyway? The existing sessions stay.')) return;
+      var rows = tr.sessions.map(function (s) { return { athlete_id: a.id, session_date: iso(addDays(start, s.day_offset)), session_type: s.type, title: s.title, description: s.description || null, target_km: s.km }; });
+      for (var i = 0; i < rows.length; i += 50) {
+        var ins = await sb.from('plan_sessions').insert(rows.slice(i, i + 50));
+        if (ins.error) { msg.innerHTML = dbError(ins.error) + '<p class="muted">Part of the plan may have loaded. Check the weeks before loading again.</p>'; return; }
+      }
+      state.athleteWeek = mondayOf(new Date()); coachAthlete();
+    };
     $('#copyprev').onclick = async function () {
       if (sessions.length && !confirm('This week already has sessions. Copy the previous week in as well?')) return;
       var pw = addDays(ws, -7);
