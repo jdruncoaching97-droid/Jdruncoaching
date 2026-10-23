@@ -38,3 +38,9 @@ a.card:hover { background: var(--maroon-tint); }
 .hub-section { padding: 48px 0 8px; }
 .hub-section h2 { font-size: clamp(1.5rem, 3.6vw, 2rem); margin: 0 0 .2em; }
 .hub-section .intro { color: var(--ink-soft); max-width: 58ch; margin: 0; }
+
+.sources{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid rgba(0,0,0,.15);font-size:.85rem;line-height:1.5}
+.sources h2{font-size:1.05rem;margin:0 0 .5rem}
+.sources ul{padding-left:1.1rem;margin:0 0 .75rem}
+.sources li{margin:.3rem 0;overflow-wrap:anywhere}
+.sources p{opacity:.75;margin:0}
