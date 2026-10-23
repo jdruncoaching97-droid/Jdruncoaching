@@ -1,0 +1,40 @@
+@import url('site.css');
+.l-head { background: var(--maroon); color: #fff; padding: 44px 0 52px; }
+.l-head .crumb { font-size: .85rem; opacity: .8; margin: 0 0 14px; }
+.l-head .crumb a { color: #fff; }
+.l-head h1 { font-size: clamp(2rem, 5.2vw, 3.2rem); margin: 0 0 12px; color: #fff; max-width: 20ch; }
+.l-head p.lead { max-width: 52ch; margin: 0; opacity: .9; font-weight: 300; font-size: 1.1rem; }
+.l-head .meta { margin-top: 18px; font-size: .85rem; opacity: .75; }
+.article { padding: 48px 0 24px; }
+.article .col { max-width: 68ch; }
+.article h2 { font-size: clamp(1.4rem, 3.2vw, 1.8rem); margin: 2.2em 0 .5em; }
+.article h3 { font-family: var(--sans); font-size: 1.05rem; font-weight: 600; margin: 1.6em 0 .3em; letter-spacing: 0; }
+.article p, .article li { color: var(--ink); }
+.article ul, .article ol { padding-left: 1.2em; }
+.article li { margin-bottom: .5em; }
+.summary { background: var(--maroon-tint); border-left: 4px solid var(--maroon); padding: 18px 22px; margin: 0 0 8px; }
+.summary h2 { margin: 0 0 .4em; font-size: 1.15rem; font-family: var(--sans); font-weight: 600; letter-spacing: 0; }
+.summary ul { margin: 0; }
+.flags { border: 2px solid var(--maroon); padding: 18px 22px; margin: 2em 0 0; background: #fff; }
+.flags h2 { margin: 0 0 .4em; font-size: 1.25rem; }
+.flags p { margin: 0 0 .6em; }
+.tbl { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: .95rem; }
+.tbl th, .tbl td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.tbl th { background: var(--mist); font-weight: 600; }
+.cta { background: var(--mist); padding: 56px 0; margin-top: 48px; }
+.cta h2 { margin: 0 0 .4em; font-size: clamp(1.5rem, 3.6vw, 2rem); }
+.cta p { max-width: 54ch; color: var(--ink-soft); }
+.related { padding: 8px 0 56px; }
+.related h2 { font-size: 1.3rem; }
+.cards { display: grid; gap: 18px; grid-template-columns: 1fr; margin: 24px 0 0; }
+@media (min-width: 700px) { .cards { grid-template-columns: 1fr 1fr; } }
+.card { display: block; background: #fff; border: 1px solid var(--rule); border-top: 3px solid var(--maroon); padding: 20px 22px; text-decoration: none; color: var(--ink); }
+a.card:hover { background: var(--maroon-tint); }
+.card h3 { font-family: var(--serif); font-size: 1.35rem; margin: 0 0 6px; }
+.card p { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+.card .tag { display: inline-block; font-size: .72rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--maroon); margin-bottom: 8px; }
+.card.soon { border-top-color: var(--rule); background: var(--mist); }
+.card.soon .tag { color: var(--ink-soft); }
+.hub-section { padding: 48px 0 8px; }
+.hub-section h2 { font-size: clamp(1.5rem, 3.6vw, 2rem); margin: 0 0 .2em; }
+.hub-section .intro { color: var(--ink-soft); max-width: 58ch; margin: 0; }
