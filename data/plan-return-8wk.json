@@ -1,0 +1,1533 @@
+{
+ "name": "Return to run + 8-week 5K / 10K block (toe fracture)",
+ "weeks": 13,
+ "sessions": [
+  {
+   "day_offset": 0,
+   "type": "cross",
+   "title": "Bike easy 45-60 min",
+   "km": null,
+   "description": "RPE 3-4, cadence 85-95. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp."
+  },
+  {
+   "day_offset": 1,
+   "type": "strength",
+   "title": "Leg Day A (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Leg press or goblet squat 3 x 6 @ RPE 7 (only if toe pain stays at 2/10 or less), hip thrust or glute bridge 3 x 10, seated calf raise (soleus) 3 x 10 only when pain-free, side plank from the knees 3 x 20 s per side, dead bug 3 x 10 per side. No jumps, hops, skips or swings."
+  },
+  {
+   "day_offset": 2,
+   "type": "cross",
+   "title": "Bike intervals (about 60 min)",
+   "km": null,
+   "description": "10-15 min easy, then 5 x 3 min hard (RPE 8) with 3 min easy between, 10 min easy cool-down."
+  },
+  {
+   "day_offset": 3,
+   "type": "strength",
+   "title": "Leg Day B (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Romanian deadlift 3 x 6 @ RPE 7 (toe pain 2/10 or less), hamstring curl 3 x 10, hip thrust or single-leg glute bridge 3 x 10, half-kneeling Pallof press 3 x 10 per side, dead bug 3 x 10 per side. No jumps, swings or push-off work."
+  },
+  {
+   "day_offset": 4,
+   "type": "cross",
+   "title": "Bike 45 min easy or deep-water run 30 min",
+   "km": null,
+   "description": "Easy. Pool running if you have access."
+  },
+  {
+   "day_offset": 5,
+   "type": "strength",
+   "title": "Upper body + spin",
+   "km": null,
+   "description": "Bench press 3 x 8, pull-up or lat pulldown 3 x 8, medicine ball chest pass (standing, no toe push-off) 3 x 5, seated medicine ball overhead slam 3 x 5, one-arm dumbbell row 3 x 8-10 per side, Pallof press 3 x 10 per side. No push-ups (they load the toes). Then spin 40-50 min easy (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 6,
+   "type": "cross",
+   "title": "Long bike 75-90 min",
+   "km": null,
+   "description": "Steady-easy, RPE 4. Replaces the long run."
+  },
+  {
+   "day_offset": 7,
+   "type": "cross",
+   "title": "Bike easy 45-60 min",
+   "km": null,
+   "description": "RPE 3-4, cadence 85-95. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp."
+  },
+  {
+   "day_offset": 8,
+   "type": "strength",
+   "title": "Leg Day A (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Leg press or goblet squat 3 x 6 @ RPE 7 (only if toe pain stays at 2/10 or less), hip thrust or glute bridge 3 x 10, seated calf raise (soleus) 3 x 10 only when pain-free, side plank from the knees 3 x 20 s per side, dead bug 3 x 10 per side. No jumps, hops, skips or swings."
+  },
+  {
+   "day_offset": 9,
+   "type": "cross",
+   "title": "Bike intervals (about 60 min)",
+   "km": null,
+   "description": "10-15 min easy, then 6 x 3 min hard (RPE 8) with 3 min easy between, 10 min easy cool-down."
+  },
+  {
+   "day_offset": 10,
+   "type": "strength",
+   "title": "Leg Day B (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Romanian deadlift 3 x 6 @ RPE 7 (toe pain 2/10 or less), hamstring curl 3 x 10, hip thrust or single-leg glute bridge 3 x 10, half-kneeling Pallof press 3 x 10 per side, dead bug 3 x 10 per side. No jumps, swings or push-off work."
+  },
+  {
+   "day_offset": 11,
+   "type": "cross",
+   "title": "Bike 45 min easy or deep-water run 30 min",
+   "km": null,
+   "description": "Easy. Pool running if you have access."
+  },
+  {
+   "day_offset": 12,
+   "type": "strength",
+   "title": "Upper body + spin",
+   "km": null,
+   "description": "Bench press 3 x 8, pull-up or lat pulldown 3 x 8, medicine ball chest pass (standing, no toe push-off) 3 x 5, seated medicine ball overhead slam 3 x 5, one-arm dumbbell row 3 x 8-10 per side, Pallof press 3 x 10 per side. No push-ups (they load the toes). Then spin 40-50 min easy (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 13,
+   "type": "cross",
+   "title": "Long bike 75-90 min",
+   "km": null,
+   "description": "Steady-easy, RPE 4. Replaces the long run. Gate test after this week: 30 min brisk walk, 15 single-leg calf raises and 20 gentle two-foot hops all at 1/10 or less, no night pain. If not passed, repeat this week and move every later date back."
+  },
+  {
+   "day_offset": 14,
+   "type": "easy",
+   "title": "Walk-run: 8 x (1 min easy run + 2 min walk)",
+   "km": null,
+   "description": "5 min brisk walk before and after. Soft, flat surface. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "warmup",
+     "min": 5,
+     "name": "Brisk walk"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "min": 1,
+       "zone": "E",
+       "name": "Easy run"
+      },
+      {
+       "k": "recover",
+       "min": 2,
+       "name": "Walk"
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "min": 5,
+     "name": "Brisk walk"
+    }
+   ]
+  },
+  {
+   "day_offset": 15,
+   "type": "strength",
+   "title": "Leg Day A (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Leg press or goblet squat 3 x 6 @ RPE 7 (only if toe pain stays at 2/10 or less), hip thrust or glute bridge 3 x 10, seated calf raise (soleus) 3 x 10 only when pain-free, side plank from the knees 3 x 20 s per side, dead bug 3 x 10 per side. Add single-leg calf raises 3 x 8 once pain-free. No jumps, hops, skips or swings."
+  },
+  {
+   "day_offset": 16,
+   "type": "easy",
+   "title": "Walk-run: 6 x (2 min easy run + 1 min walk)",
+   "km": null,
+   "description": "5 min brisk walk before and after. Soft, flat surface. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "warmup",
+     "min": 5,
+     "name": "Brisk walk"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "min": 2,
+       "zone": "E",
+       "name": "Easy run"
+      },
+      {
+       "k": "recover",
+       "min": 1,
+       "name": "Walk"
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "min": 5,
+     "name": "Brisk walk"
+    }
+   ]
+  },
+  {
+   "day_offset": 17,
+   "type": "strength",
+   "title": "Leg Day B (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Romanian deadlift 3 x 6 @ RPE 7 (toe pain 2/10 or less), hamstring curl 3 x 10, hip thrust or single-leg glute bridge 3 x 10, half-kneeling Pallof press 3 x 10 per side, dead bug 3 x 10 per side. No jumps, swings or push-off work. Optional: spin 20-30 min very easy afterwards."
+  },
+  {
+   "day_offset": 18,
+   "type": "easy",
+   "title": "Walk-run: 5 x (3 min easy run + 1 min walk)",
+   "km": null,
+   "description": "5 min brisk walk before and after. Soft, flat surface. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "warmup",
+     "min": 5,
+     "name": "Brisk walk"
+    },
+    {
+     "rep": 5,
+     "steps": [
+      {
+       "k": "work",
+       "min": 3,
+       "zone": "E",
+       "name": "Easy run"
+      },
+      {
+       "k": "recover",
+       "min": 1,
+       "name": "Walk"
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "min": 5,
+     "name": "Brisk walk"
+    }
+   ]
+  },
+  {
+   "day_offset": 19,
+   "type": "strength",
+   "title": "Upper body + spin",
+   "km": null,
+   "description": "Bench press 3 x 8, pull-up or lat pulldown 3 x 8, medicine ball chest pass (standing, no toe push-off) 3 x 5, seated medicine ball overhead slam 3 x 5, one-arm dumbbell row 3 x 8-10 per side, Pallof press 3 x 10 per side. No push-ups (they load the toes). Then spin 40-50 min easy (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 20,
+   "type": "cross",
+   "title": "Long bike 75 min",
+   "km": null,
+   "description": "Steady-easy, RPE 4."
+  },
+  {
+   "day_offset": 21,
+   "type": "easy",
+   "title": "Run: 4 x (5 min easy run + 1 min walk)",
+   "km": null,
+   "description": "Soft, flat surface. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "warmup",
+     "min": 5,
+     "name": "Brisk walk"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "min": 5,
+       "zone": "E",
+       "name": "Easy run"
+      },
+      {
+       "k": "recover",
+       "min": 1,
+       "name": "Walk"
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "min": 5,
+     "name": "Brisk walk"
+    }
+   ]
+  },
+  {
+   "day_offset": 22,
+   "type": "strength",
+   "title": "Leg Day A (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Leg press or goblet squat 3 x 6 @ RPE 7 (only if toe pain stays at 2/10 or less), hip thrust or glute bridge 3 x 10, seated calf raise (soleus) 3 x 10 only when pain-free, side plank from the knees 3 x 20 s per side, dead bug 3 x 10 per side. Add single-leg calf raises 3 x 8 once pain-free. No jumps, hops, skips or swings."
+  },
+  {
+   "day_offset": 23,
+   "type": "easy",
+   "title": "Run: 3 x (8 min easy run + 1 min walk)",
+   "km": null,
+   "description": "Soft, flat surface. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "warmup",
+     "min": 5,
+     "name": "Brisk walk"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "min": 8,
+       "zone": "E",
+       "name": "Easy run"
+      },
+      {
+       "k": "recover",
+       "min": 1,
+       "name": "Walk"
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "min": 5,
+     "name": "Brisk walk"
+    }
+   ]
+  },
+  {
+   "day_offset": 24,
+   "type": "strength",
+   "title": "Leg Day B (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Romanian deadlift 3 x 6 @ RPE 7 (toe pain 2/10 or less), hamstring curl 3 x 10, hip thrust or single-leg glute bridge 3 x 10, half-kneeling Pallof press 3 x 10 per side, dead bug 3 x 10 per side. No jumps, swings or push-off work. Optional: spin 20-30 min very easy afterwards."
+  },
+  {
+   "day_offset": 25,
+   "type": "easy",
+   "title": "Run: 25 min continuous easy run",
+   "km": null,
+   "description": "Soft, flat surface. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "run",
+     "min": 25,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 26,
+   "type": "strength",
+   "title": "Upper body + spin",
+   "km": null,
+   "description": "Bench press 3 x 8, pull-up or lat pulldown 3 x 8, medicine ball chest pass (standing, no toe push-off) 3 x 5, seated medicine ball overhead slam 3 x 5, one-arm dumbbell row 3 x 8-10 per side, Pallof press 3 x 10 per side. No push-ups (they load the toes). Then spin 40-50 min easy (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 27,
+   "type": "long",
+   "title": "Run: 30 min continuous easy",
+   "km": null,
+   "description": "Easy. Optional 30 min easy spin later in the day. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "run",
+     "min": 30,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 28,
+   "type": "easy",
+   "title": "Easy run 35 min (about 6 km)",
+   "km": 6,
+   "description": "Easy. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "run",
+     "min": 35,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 29,
+   "type": "strength",
+   "title": "Leg Day A (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Leg press or goblet squat 3 x 6 @ RPE 7 (only if toe pain stays at 2/10 or less), hip thrust or glute bridge 3 x 10, seated calf raise (soleus) 3 x 10 only when pain-free, side plank from the knees 3 x 20 s per side, dead bug 3 x 10 per side. Add single-leg calf raises 3 x 8 once pain-free. No jumps, hops, skips or swings."
+  },
+  {
+   "day_offset": 30,
+   "type": "easy",
+   "title": "Easy run 40 min (about 7 km)",
+   "km": 7,
+   "description": "Easy. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "run",
+     "min": 40,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 31,
+   "type": "strength",
+   "title": "Leg Day B (toe-safe)",
+   "km": null,
+   "description": "Toe-safe version. Romanian deadlift 3 x 6 @ RPE 7 (toe pain 2/10 or less), hamstring curl 3 x 10, hip thrust or single-leg glute bridge 3 x 10, half-kneeling Pallof press 3 x 10 per side, dead bug 3 x 10 per side. No jumps, swings or push-off work. Optional: spin 20-30 min very easy afterwards."
+  },
+  {
+   "day_offset": 32,
+   "type": "easy",
+   "title": "Easy run 35 min + 4 x 15s strides (about 6 km)",
+   "km": 6,
+   "description": "Strides only if pain-free. Buddy tape the 5th toe, stiff-soled shoe with a wide toe box. Toe pain 2/10 or less, no worse the next morning, no limp.",
+   "steps": [
+    {
+     "k": "run",
+     "min": 35,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 15,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 33,
+   "type": "strength",
+   "title": "Upper body + spin",
+   "km": null,
+   "description": "Bench press 3 x 8, pull-up or lat pulldown 3 x 8, medicine ball chest pass (standing, no toe push-off) 3 x 5, seated medicine ball overhead slam 3 x 5, one-arm dumbbell row 3 x 8-10 per side, Pallof press 3 x 10 per side. No push-ups (they load the toes). Then spin 40-50 min easy (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 34,
+   "type": "long",
+   "title": "Long run 50 min (about 9 km)",
+   "km": 9,
+   "description": "Easy. If this week passes, the 8-week block starts Mon 30 Nov. If not, repeat it and shift the block back.",
+   "steps": [
+    {
+     "k": "run",
+     "min": 50,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 35,
+   "type": "easy",
+   "title": "7 km easy + 4 x 8s hill sprints",
+   "km": 7,
+   "description": "Hill sprints only if the toe is pain-free (2/10 or less), otherwise flat strides. All-out but relaxed up a 6-8% hill, walk back down, about 90 s between.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 6,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 8,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 36,
+   "type": "strength",
+   "title": "Leg Day A",
+   "km": null,
+   "description": "Toe check: pogo hops, A-skips and kettlebell swings only if the toe is pain-free (2/10 or less); otherwise leave them out. Foundation week (no contrast pairs yet). Back squat 3 x 6 at RPE 7, pogo hops 3 x 10, box step-down landing practice 3 x 5, A-skips 2 x 20 m. Accessory (2 sets each): split squat or Bulgarian split squat 2 x 8 per leg, bent-knee calf raise 2 x 8 heavy (3 s down), tibialis raise 2 x 15, Copenhagen or side plank 2 x 20-30 s per side."
+  },
+  {
+   "day_offset": 37,
+   "type": "threshold",
+   "title": "8 km fartlek",
+   "km": 8,
+   "description": "2.5 km easy, 5 x (2 min at T effort, 2 min easy jog), 2 km easy",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2.5,
+     "zone": "E"
+    },
+    {
+     "rep": 5,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "min": 2
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 2
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 38,
+   "type": "strength",
+   "title": "Leg Day B",
+   "km": null,
+   "description": "Toe check: pogo hops, A-skips and kettlebell swings only if the toe is pain-free (2/10 or less); otherwise leave them out. Foundation week (no contrast pairs yet). Trap bar deadlift 3 x 6 at RPE 7, kettlebell swing 3 x 8, A-skips 2 x 20 m. Accessory (2 sets each): see Leg Day B list. Optional: 20-30 min very easy spin afterwards, only if your legs feel good."
+  },
+  {
+   "day_offset": 39,
+   "type": "easy",
+   "title": "7 km easy + 6 x 20s strides",
+   "km": 7,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 6,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 40,
+   "type": "strength",
+   "title": "Upper body",
+   "km": null,
+   "description": "Toe check: pogo hops, A-skips and kettlebell swings only if the toe is pain-free (2/10 or less); otherwise leave them out. Foundation week. Bench press 3 x 8, pull-up or pulldown 3 x 8, incline plyometric push-ups 3 x 5, medicine ball overhead slam 3 x 5. Accessory (2 sets each): row, Pallof press, dead bug, farmer's carry. Then a 40-50 min easy spin (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 41,
+   "type": "long",
+   "title": "Long run 11 km",
+   "km": 11,
+   "description": "Easy.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 11,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 42,
+   "type": "easy",
+   "title": "7 km easy + 5 x 8s hill sprints",
+   "km": 7,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 6,
+     "zone": "E"
+    },
+    {
+     "rep": 5,
+     "steps": [
+      {
+       "k": "work",
+       "s": 8,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 43,
+   "type": "strength",
+   "title": "Leg Day A",
+   "km": null,
+   "description": "Toe check: pogo hops, A-skips and kettlebell swings only if the toe is pain-free (2/10 or less); otherwise leave them out. Foundation week (no contrast pairs yet). Back squat 3 x 6 at RPE 7, pogo hops 3 x 10, box step-down landing practice 3 x 5, A-skips 2 x 20 m. Accessory (2 sets each): split squat or Bulgarian split squat 2 x 8 per leg, bent-knee calf raise 2 x 8 heavy (3 s down), tibialis raise 2 x 15, Copenhagen or side plank 2 x 20-30 s per side."
+  },
+  {
+   "day_offset": 44,
+   "type": "race",
+   "title": "5K TIME TRIAL",
+   "km": null,
+   "description": "2 km easy warm-up, 4 x 100m strides, 5 km hard but even effort (even pace or slight negative split), 2 km easy. Run it by effort. Convert the result to a VDOT and reset your paces, one point at a time.",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 15,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    },
+    {
+     "k": "work",
+     "km": 5,
+     "name": "5K effort"
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 45,
+   "type": "strength",
+   "title": "Leg Day B",
+   "km": null,
+   "description": "Toe check: pogo hops, A-skips and kettlebell swings only if the toe is pain-free (2/10 or less); otherwise leave them out. Foundation week (no contrast pairs yet). Trap bar deadlift 3 x 6 at RPE 7, kettlebell swing 3 x 8, A-skips 2 x 20 m. Accessory (2 sets each): see Leg Day B list. Optional: 20-30 min very easy spin afterwards, only if your legs feel good."
+  },
+  {
+   "day_offset": 46,
+   "type": "easy",
+   "title": "7 km easy + 6 x 20s strides",
+   "km": 7,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 6,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 47,
+   "type": "strength",
+   "title": "Upper body",
+   "km": null,
+   "description": "Toe check: pogo hops, A-skips and kettlebell swings only if the toe is pain-free (2/10 or less); otherwise leave them out. Foundation week. Bench press 3 x 8, pull-up or pulldown 3 x 8, incline plyometric push-ups 3 x 5, medicine ball overhead slam 3 x 5. Accessory (2 sets each): row, Pallof press, dead bug, farmer's carry. Then a 40-50 min easy spin (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 48,
+   "type": "long",
+   "title": "Long run 13 km (Q2)",
+   "km": 13,
+   "description": "first 11 km easy, last 2 km at marathon pace. Keep it controlled: the time trial was on Wednesday.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 11,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2,
+     "zone": "M",
+     "name": "M pace"
+    }
+   ]
+  },
+  {
+   "day_offset": 49,
+   "type": "easy",
+   "title": "8 km easy + 6 x 8s hill sprints",
+   "km": 8,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 8,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 50,
+   "type": "strength",
+   "title": "Leg Day A",
+   "km": null,
+   "description": "Contrast pairs: 2 sets at RPE 7. Back squat 3 reps, then box jump 30-45 cm x 5 (step down each rep). Accessory: split squat or Bulgarian split squat 3 x 8 per leg, bent-knee calf raise 3 x 8 heavy (3 s down), tibialis raise 3 x 15, Copenhagen or side plank 3 x 20-30 s per side. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore."
+  },
+  {
+   "day_offset": 51,
+   "type": "threshold",
+   "title": "10 km threshold session",
+   "km": 10,
+   "description": "2.5 km easy, 3 x 6 min at T (RPE 6-7, not faster) with 2 min easy jog between, 2 km easy",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2.5,
+     "zone": "E"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "min": 6
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 2
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 52,
+   "type": "strength",
+   "title": "Leg Day B",
+   "km": null,
+   "description": "Contrast pairs: 2 sets at RPE 7. Trap bar deadlift 3 reps, then broad jump x 4 (stick each landing). Accessory: single-leg Romanian deadlift 3 x 8 per leg, hip thrust or single-leg glute bridge 3 x 10, single-leg calf raise 3 x 10, tibialis raise 2 x 15, banded march hold 3 x 20 s per leg, side plank 3 x 20-30 s per side. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore."
+  },
+  {
+   "day_offset": 53,
+   "type": "easy",
+   "title": "8 km easy + 8 x 20s strides",
+   "km": 8,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 54,
+   "type": "strength",
+   "title": "Upper body",
+   "km": null,
+   "description": "Contrast pairs: push pair 2 sets (RPE 7). Bench press 3 reps then plyometric push-ups x 5; weighted pull-up or heavy pulldown 3 reps then medicine ball overhead slam x 5. Accessory: one-arm dumbbell row 3 x 8-10, Pallof press 3 x 10, dead bug 3 x 10, farmer's carry 3 x 30 m, banded sprint-arm drives 3 x 15 s, single-leg calf raise 2 x 12, tibialis raise 2 x 15. Then a 30-40 min easy spin (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 55,
+   "type": "long",
+   "title": "Long run 14 km (Q2)",
+   "km": 14,
+   "description": "first 5 km easy, 2 km at marathon pace, 1 km easy, 2 km at marathon pace, last 4 km easy",
+   "steps": [
+    {
+     "k": "run",
+     "km": 5,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2,
+     "zone": "M",
+     "name": "M pace"
+    },
+    {
+     "k": "run",
+     "km": 1,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2,
+     "zone": "M",
+     "name": "M pace"
+    },
+    {
+     "k": "cooldown",
+     "km": 4,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 56,
+   "type": "easy",
+   "title": "7 km easy + 4 x 8s hill sprints",
+   "km": 7,
+   "description": "Cutback week.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 6,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 8,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 57,
+   "type": "strength",
+   "title": "Leg Day A",
+   "km": null,
+   "description": "Contrast pairs: 2 sets at RPE 7. Back squat 3 reps, then box jump 30-45 cm x 5 (step down each rep). Accessory: split squat or Bulgarian split squat 3 x 8 per leg, bent-knee calf raise 3 x 8 heavy (3 s down), tibialis raise 3 x 15, Copenhagen or side plank 3 x 20-30 s per side. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore."
+  },
+  {
+   "day_offset": 58,
+   "type": "repetition",
+   "title": "9 km: 8 x 200 m at R pace",
+   "km": 9,
+   "description": "2 km warm-up, 8 x 200m at R pace with 200m walk/jog recovery, 2 km cool-down",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "R",
+       "m": 200
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "m": 200
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 59,
+   "type": "strength",
+   "title": "Leg Day B",
+   "km": null,
+   "description": "Contrast pairs: 2 sets at RPE 7. Trap bar deadlift 3 reps, then broad jump x 4 (stick each landing). Accessory: single-leg Romanian deadlift 3 x 8 per leg, hip thrust or single-leg glute bridge 3 x 10, single-leg calf raise 3 x 10, tibialis raise 2 x 15, banded march hold 3 x 20 s per leg, side plank 3 x 20-30 s per side. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore."
+  },
+  {
+   "day_offset": 60,
+   "type": "easy",
+   "title": "7 km easy + 8 x 20s strides",
+   "km": 7,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 6,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 61,
+   "type": "strength",
+   "title": "Upper body",
+   "km": null,
+   "description": "Contrast pairs: push pair 2 sets (RPE 7). Bench press 3 reps then plyometric push-ups x 5; weighted pull-up or heavy pulldown 3 reps then medicine ball overhead slam x 5. Accessory: one-arm dumbbell row 3 x 8-10, Pallof press 3 x 10, dead bug 3 x 10, farmer's carry 3 x 30 m, banded sprint-arm drives 3 x 15 s, single-leg calf raise 2 x 12, tibialis raise 2 x 15. Then a 30-40 min easy spin (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 62,
+   "type": "long",
+   "title": "Long run 12 km (Q2)",
+   "km": 12,
+   "description": "first 10 km easy, last 2 km at marathon pace. Sunday 27 Dec was the original race date: relaxed run, no racing.",
+   "steps": [
+    {
+     "k": "run",
+     "km": 10,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 2,
+     "zone": "M",
+     "name": "M pace"
+    }
+   ]
+  },
+  {
+   "day_offset": 63,
+   "type": "easy",
+   "title": "8 km easy + 6 x 10s hill sprints",
+   "km": 8,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 10,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 64,
+   "type": "strength",
+   "title": "Leg Day A",
+   "km": null,
+   "description": "Contrast pairs: 3 sets at RPE 7. Back squat 3 reps, then box jump 30-45 cm x 5 (step down each rep). Accessory: split squat or Bulgarian split squat 3 x 8 per leg, bent-knee calf raise 3 x 8 heavy (3 s down), tibialis raise 3 x 15, Copenhagen or side plank 3 x 20-30 s per side. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore."
+  },
+  {
+   "day_offset": 65,
+   "type": "interval",
+   "title": "HILL REPEATS (about 10 km)",
+   "km": 10,
+   "description": "3 km warm-up ending at the hill, 8 x 60s uphill at I effort (hard but controlled, not a sprint) with a jog back down as recovery, 2-3 km cool-down. Use effort, not pace.",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 3,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "I",
+       "s": 60,
+       "name": "Hill rep"
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog down",
+       "s": 90
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2.5,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 66,
+   "type": "strength",
+   "title": "Leg Day B",
+   "km": null,
+   "description": "Contrast pairs: 3 sets at RPE 8. Trap bar deadlift 3 reps, then broad jump x 4 (stick each landing). Accessory: single-leg Romanian deadlift 3 x 8 per leg, hip thrust or single-leg glute bridge 3 x 10, single-leg calf raise 3 x 10, tibialis raise 2 x 15, banded march hold 3 x 20 s per leg, side plank 3 x 20-30 s per side. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore. Optional: 20-30 min very easy spin afterwards, only if your legs feel good."
+  },
+  {
+   "day_offset": 67,
+   "type": "easy",
+   "title": "8 km easy + 8 x 20s strides",
+   "km": 8,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 68,
+   "type": "strength",
+   "title": "Upper body",
+   "km": null,
+   "description": "Contrast pairs: push pair 3 sets + pull pair 3 sets (RPE 8). Bench press 3 reps then plyometric push-ups x 5; weighted pull-up or heavy pulldown 3 reps then medicine ball overhead slam x 5. Accessory: one-arm dumbbell row 3 x 8-10, Pallof press 3 x 10, dead bug 3 x 10, farmer's carry 3 x 30 m, banded sprint-arm drives 3 x 15 s, single-leg calf raise 2 x 12, tibialis raise 2 x 15. Then a 40-50 min easy spin (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 69,
+   "type": "long",
+   "title": "Long run 15 km (Q2)",
+   "km": 15,
+   "description": "first 12 km easy, last 3 km at steady (marathon) pace",
+   "steps": [
+    {
+     "k": "run",
+     "km": 12,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 3,
+     "zone": "M",
+     "name": "Steady"
+    }
+   ]
+  },
+  {
+   "day_offset": 70,
+   "type": "easy",
+   "title": "8 km easy + 6 x 10s hill sprints",
+   "km": 8,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 10,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 71,
+   "type": "strength",
+   "title": "Leg Day A",
+   "km": null,
+   "description": "Contrast pairs: 3 sets at RPE 7-8. Back squat 3 reps, then box jump 30-45 cm x 5 (step down each rep). Accessory: split squat or Bulgarian split squat 3 x 8 per leg, bent-knee calf raise 3 x 8 heavy (3 s down), tibialis raise 3 x 15, Copenhagen or side plank 3 x 20-30 s per side. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore."
+  },
+  {
+   "day_offset": 72,
+   "type": "threshold",
+   "title": "THRESHOLD CRUISE INTERVALS (about 11 km)",
+   "km": 11,
+   "description": "3 km warm-up, 4 x 1 km at T pace with 1 min easy jog between, 2-3 km cool-down. Choose 5K or 10K for race day this week.",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 3,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "km": 1
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "s": 60
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2.5,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 73,
+   "type": "strength",
+   "title": "Leg Day B",
+   "km": null,
+   "description": "Contrast pairs: 4 sets at RPE 8. Trap bar deadlift 3 reps, then broad jump x 4 (stick each landing). Accessory: single-leg Romanian deadlift 3 x 8 per leg, hip thrust or single-leg glute bridge 3 x 10, single-leg calf raise 3 x 10, tibialis raise 2 x 15, banded march hold 3 x 20 s per leg, side plank 3 x 20-30 s per side. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore. Optional: 20-30 min very easy spin afterwards, only if your legs feel good."
+  },
+  {
+   "day_offset": 74,
+   "type": "easy",
+   "title": "9 km easy + 8 x 20s strides",
+   "km": 9,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 8,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 75,
+   "type": "strength",
+   "title": "Upper body",
+   "km": null,
+   "description": "Contrast pairs: push 3 + pull 3 (RPE 8). Bench press 3 reps then plyometric push-ups x 5; weighted pull-up or heavy pulldown 3 reps then medicine ball overhead slam x 5. Accessory: one-arm dumbbell row 3 x 8-10, Pallof press 3 x 10, dead bug 3 x 10, farmer's carry 3 x 30 m, banded sprint-arm drives 3 x 15 s, single-leg calf raise 2 x 12, tibialis raise 2 x 15. Then a 40-50 min easy spin (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 76,
+   "type": "long",
+   "title": "Long run 15 km (Q2)",
+   "km": 15,
+   "description": "first 11 km easy, last 4 km at steady (marathon) pace",
+   "steps": [
+    {
+     "k": "run",
+     "km": 11,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 4,
+     "zone": "M",
+     "name": "Steady"
+    }
+   ]
+  },
+  {
+   "day_offset": 77,
+   "type": "easy",
+   "title": "8 km easy + 6 x 10s hill sprints",
+   "km": 8,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 6,
+     "steps": [
+      {
+       "k": "work",
+       "s": 10,
+       "name": "Hill sprint"
+      },
+      {
+       "k": "recover",
+       "s": 90,
+       "name": "Walk down"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 78,
+   "type": "strength",
+   "title": "Leg Day A",
+   "km": null,
+   "description": "Contrast pairs: 2 sets at RPE 8. Back squat 3 reps, then box jump 30-45 cm x 5 (step down each rep). Accessory: split squat or Bulgarian split squat 3 x 8 per leg, bent-knee calf raise 3 x 8 heavy (3 s down), tibialis raise 3 x 15, Copenhagen or side plank 3 x 20-30 s per side. Keep accessory work to 2 sets this week. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore."
+  },
+  {
+   "day_offset": 79,
+   "type": "interval",
+   "title": "VO2MAX 1Ks (about 12 km)",
+   "km": 12,
+   "description": "3 km warm-up, 5 x 1 km at I pace with 3 min easy jog between, 2 km cool-down. Add a 6th rep only if all five are on pace and controlled. Use the I pace from your Week 2 time-trial VDOT.",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 3,
+     "zone": "E"
+    },
+    {
+     "rep": 5,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "I",
+       "km": 1
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 3
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 80,
+   "type": "strength",
+   "title": "Leg Day B",
+   "km": null,
+   "description": "Contrast pairs: 3 sets at RPE 8-9. Trap bar deadlift 3 reps, then broad jump x 4 (stick each landing). Accessory: single-leg Romanian deadlift 3 x 8 per leg, hip thrust or single-leg glute bridge 3 x 10, single-leg calf raise 3 x 10, tibialis raise 2 x 15, banded march hold 3 x 20 s per leg, side plank 3 x 20-30 s per side. Warm-up 8-10 min: 5 min easy spin, mobility, 2 ramp-up sets of the first heavy lift, then 2 sets of 3 of the plyometric. Skip the jumps (keep the lifts) if the shin or calf is sore. Optional: 20-30 min very easy spin afterwards, only if your legs feel good."
+  },
+  {
+   "day_offset": 81,
+   "type": "easy",
+   "title": "8 km easy + 8 x 20s strides",
+   "km": 8,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 7,
+     "zone": "E"
+    },
+    {
+     "rep": 8,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 82,
+   "type": "strength",
+   "title": "Upper body",
+   "km": null,
+   "description": "Contrast pairs: push 3 + pull 3 (RPE 8). Bench press 3 reps then plyometric push-ups x 5; weighted pull-up or heavy pulldown 3 reps then medicine ball overhead slam x 5. Accessory: one-arm dumbbell row 3 x 8-10, Pallof press 3 x 10, dead bug 3 x 10, farmer's carry 3 x 30 m, banded sprint-arm drives 3 x 15 s, single-leg calf raise 2 x 12, tibialis raise 2 x 15. Then a 40-50 min easy spin (RPE 3-4, cadence 85-95)."
+  },
+  {
+   "day_offset": 83,
+   "type": "long",
+   "title": "Long run 14 km (Q2)",
+   "km": 14,
+   "description": "first 10 km easy, last 4 km at steady (marathon) pace",
+   "steps": [
+    {
+     "k": "run",
+     "km": 10,
+     "zone": "E"
+    },
+    {
+     "k": "work",
+     "km": 4,
+     "zone": "M",
+     "name": "Steady"
+    }
+   ]
+  },
+  {
+   "day_offset": 84,
+   "type": "easy",
+   "title": "6 km easy + 4 x 20s strides",
+   "km": 6,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 5,
+     "zone": "E"
+    },
+    {
+     "rep": 4,
+     "steps": [
+      {
+       "k": "work",
+       "s": 20,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 85,
+   "type": "strength",
+   "title": "Optional light upper body",
+   "km": null,
+   "description": "Optional: 2 sets, no contrast work or plyometrics. Or rest. No leg strength this week."
+  },
+  {
+   "day_offset": 86,
+   "type": "threshold",
+   "title": "8 km: 3 x 1 km at T pace",
+   "km": 8,
+   "description": "2 km warm-up, 3 x 1 km at T pace with 2 min easy jog (controlled, not a race effort), 2 km cool-down",
+   "steps": [
+    {
+     "k": "warmup",
+     "km": 2,
+     "zone": "E"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "zone": "T",
+       "km": 1
+      },
+      {
+       "k": "recover",
+       "zone": "E",
+       "name": "Jog",
+       "min": 2
+      }
+     ]
+    },
+    {
+     "k": "cooldown",
+     "km": 2,
+     "zone": "E"
+    }
+   ]
+  },
+  {
+   "day_offset": 87,
+   "type": "rest",
+   "title": "Rest or mobility",
+   "km": null,
+   "description": "Rest, or 15 min easy mobility only. No contrast work or heavy lifting this week."
+  },
+  {
+   "day_offset": 88,
+   "type": "easy",
+   "title": "4 km very easy + 3 x 100m strides",
+   "km": 4,
+   "description": "",
+   "steps": [
+    {
+     "k": "run",
+     "km": 3.5,
+     "zone": "E"
+    },
+    {
+     "rep": 3,
+     "steps": [
+      {
+       "k": "work",
+       "s": 15,
+       "name": "Stride"
+      },
+      {
+       "k": "recover",
+       "s": 40,
+       "name": "Easy",
+       "zone": "E"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "day_offset": 89,
+   "type": "rest",
+   "title": "Rest",
+   "km": null,
+   "description": "Rest. Eat well, hydrate and set up your race plan."
+  },
+  {
+   "day_offset": 90,
+   "type": "race",
+   "title": "RACE DAY: 5K or 10K at goal pace",
+   "km": null,
+   "description": "Warm-up: 10-15 min easy jog, dynamic mobility, 3-4 x 100m strides, finishing about 10 minutes before the start."
+  }
+ ]
+}

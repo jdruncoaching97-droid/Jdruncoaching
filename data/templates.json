@@ -3,5 +3,10 @@
   "id": "5k10k-12wk",
   "name": "12-week 5K / 10K plan (4 runs, 3 strength)",
   "file": "plan-5k10k.json"
+ },
+ {
+  "id": "return-8wk",
+  "name": "Return to run + 8-week block (starts 26 Oct 2026)",
+  "file": "plan-return-8wk.json"
  }
 ]

@@ -79,3 +79,5 @@ th { font-weight: 600; background: var(--maroon-tint); }
 .bar { display: inline-block; width: 70px; height: 8px; background: var(--mist); border: 1px solid var(--rule); vertical-align: middle; }
 .bar i { display: block; height: 100%; background: var(--maroon); }
 td, .cmt, .sess p { overflow-wrap: anywhere; }
+.check { display: flex; gap: 8px; align-items: flex-start; font-size: .92rem; }
+.check input { width: auto; margin-top: 4px; }

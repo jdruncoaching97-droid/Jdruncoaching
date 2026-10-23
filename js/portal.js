@@ -417,7 +417,7 @@
       '<label>Details<textarea name="desc" placeholder="Warm-up, paces, notes"></textarea></label><div id="addmsg"></div><div><button class="btn" type="submit">Add session</button></div></form></div>' +
       '<div class="panel"><h2>Load a template plan</h2><p class="muted">Adds every session from a saved plan to this athlete\'s calendar. Pick the Monday that starts Week 1.</p>' +
       '<form class="stack" id="tplf"><div class="grid2"><label>Template<select name="tpl"><option value="">Loading</option></select></label>' +
-      '<label>Week 1 starts (a Monday)<input type="date" name="start" required value="' + iso(mondayOf(new Date())) + '"></label></div><div id="tplmsg"></div><div><button class="btn" type="submit">Load plan</button></div></form></div>' +
+      '<label>Week 1 starts (a Monday)<input type="date" name="start" required value="' + iso(mondayOf(new Date())) + '"></label></div><label class="check"><input type="checkbox" name="replace"> Replace this athlete\'s existing planned sessions from the start date onward</label><div id="tplmsg"></div><div><button class="btn" type="submit">Load plan</button></div></form></div>' +
       summary +
       '<h2>Check-ins</h2>' + (checks.length ? checks.map(function (c) { return checkinHtml(c, cm, who); }).join('') : '<p class="empty">No check-ins yet.</p>') +
       '<h2>Recent runs</h2>' + (logs.length ? logTable(logs, false, cm, who) : '<p class="empty">No runs logged yet.</p>'));
@@ -458,9 +458,14 @@
       if (start.getDay() !== 1) { msg.innerHTML = '<p class="err" role="alert">Pick a Monday. Week 1 needs to start on a Monday.</p>'; return; }
       var tr; try { tr = await (await fetch('../data/' + f.get('tpl'))).json(); } catch (x) { msg.innerHTML = '<p class="err" role="alert">Could not load that template.</p>'; return; }
       var last = addDays(start, tr.weeks * 7 - 1);
-      var ex = await sb.from('plan_sessions').select('id').eq('athlete_id', a.id).gte('session_date', iso(start)).lte('session_date', iso(last));
+      var replace = !!f.get('replace');
+      var exq = sb.from('plan_sessions').select('id').eq('athlete_id', a.id).gte('session_date', iso(start));
+      if (!replace) exq = exq.lte('session_date', iso(last));
+      var ex = await exq;
       if (ex.error) { msg.innerHTML = dbError(ex.error); return; }
-      if (ex.data.length && !confirm('This athlete already has ' + ex.data.length + ' sessions between ' + fmtDay(start) + ' and ' + fmtDay(last) + '. Load the plan anyway? The existing sessions stay.')) return;
+      if (replace) {
+        if (!confirm('This will replace ' + ex.data.length + ' planned sessions from ' + fmtDay(start) + ' onward with the new plan. Logged runs are kept. Continue?')) return;
+      } else if (ex.data.length && !confirm('This athlete already has ' + ex.data.length + ' sessions between ' + fmtDay(start) + ' and ' + fmtDay(last) + '. Load the plan anyway? The existing sessions stay.')) return;
       var rows = tr.sessions.map(function (s) { return { athlete_id: a.id, session_date: iso(addDays(start, s.day_offset)), session_type: s.type, title: s.title, description: s.description || null, target_km: s.km, steps: s.steps || null }; });
       var noSteps = false;
       for (var i = 0; i < rows.length; i += 50) {
@@ -470,6 +475,12 @@
           ins = await sb.from('plan_sessions').insert(rows.slice(0, 50));
         }
         if (ins.error) { msg.innerHTML = dbError(ins.error) + '<p class="muted">Part of the plan may have loaded. Check the weeks before loading again.</p>'; return; }
+      }
+      if (replace) {   // new plan is in: now remove the sessions that were there before
+        for (var j = 0; j < ex.data.length; j += 100) {
+          var del = await sb.from('plan_sessions').delete().in('id', ex.data.slice(j, j + 100).map(function (x) { return x.id; }));
+          if (del.error) { msg.innerHTML = dbError(del.error) + '<p class="muted">The new plan loaded, but some old sessions could not be removed. Delete them from the week view.</p>'; return; }
+        }
       }
       if (noSteps) alert('Plan loaded, but the Garmin download data was left out because the steps column has not been added in Supabase yet.');
       state.athleteWeek = mondayOf(new Date()); coachAthlete();
