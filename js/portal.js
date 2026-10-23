@@ -367,9 +367,17 @@
         '<td data-label="VDOT">' + (a.vdot ? esc(a.vdot) : '-') + '</td><td data-label="Last run">' + (last ? fmtDay(parseISO(last)) : 'No runs') + '</td><td data-label="Last 7 days">' + km.toFixed(1) + ' km</td><td data-label="Check-in">' + (lastChk ? fmtDay(parseISO(lastChk.week_start)) : '-') + '</td>' +
         '<td data-label="">' + (flag ? '<span class="chip flag">Niggle 4+</span>' : '') + (lowChk ? '<span class="chip flag">Check-in low</span>' : '') + (mine_ ? '' : '<button class="btn small" data-claim="' + esc(a.id) + '">Add to my athletes</button>') + '</td></tr>';
     }).join('');
-    shell(COACH_TABS, '<h1>Athletes</h1>' + dbError(r.error) + (athletes.length ?
+    var sessionBad = false;
+    if (!athletes.length && !r.error) {   // an empty list with no error can mean the login has gone stale: check we can still read our own profile
+      var me = await sb.from('profiles').select('id,role').eq('id', state.user.id).maybeSingle();
+      sessionBad = !!(me.error || !me.data || me.data.role !== 'coach');
+      if (sessionBad) { try { await sb.auth.refreshSession(); } catch (x) {} }
+    }
+    shell(COACH_TABS, '<h1>Athletes</h1>' + dbError(r.error) + (sessionBad ? '<div class="notice"><strong>Your login may have expired.</strong> The athlete list could not be loaded. Tap Try again, and if it is still empty, log out and log back in.<div style="margin-top:10px"><button class="btn small" id="retry">Try again</button> <button class="btn small ghost" id="relog">Log out</button></div></div>' : '') + (athletes.length ?
       '<div class="tablewrap"><table><thead><tr><th>Athlete</th><th>VDOT</th><th>Last run</th><th>Last 7 days</th><th>Check-in</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div>' :
-      '<p class="empty">No athletes yet. Ask athletes to create an account on this page, then add them here.</p>'));
+      (sessionBad ? '' : '<p class="empty">No athletes yet. Ask athletes to create an account on this page, then add them here.</p><p style="text-align:center"><button class="btn small ghost" id="retry">Refresh</button></p>')));
+    if ($('#retry')) $('#retry').onclick = coachAthletes;
+    if ($('#relog')) $('#relog').onclick = function () { sb.auth.signOut(); };
     app.querySelectorAll('[data-open]').forEach(function (b) { b.onclick = function () { state.athlete = athletes.find(function (a) { return a.id === b.dataset.open; }); state.athleteWeek = mondayOf(new Date()); coachAthlete(); }; });
     app.querySelectorAll('[data-claim]').forEach(function (b) {
       b.onclick = async function () {
