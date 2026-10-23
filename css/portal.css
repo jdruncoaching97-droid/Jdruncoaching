@@ -67,6 +67,13 @@ th { font-weight: 600; background: var(--maroon-tint); }
   .tablewrap td::before { content: attr(data-label); font-weight: 600; min-width: 92px; color: var(--ink-soft); flex: none; }
   .tablewrap td[data-label=""]::before { content: none; }
   .tablewrap td:empty { display: none; }
+  /* long text cells: label on its own line so the text gets the full card width */
+  .tablewrap td[data-label="Session"], .tablewrap td[data-label="Notes"], .tablewrap td[data-label="Logged"] { display: block; padding: 6px 0; }
+  .tablewrap td[data-label="Session"]::before, .tablewrap td[data-label="Notes"]::before, .tablewrap td[data-label="Logged"]::before { display: block; margin-bottom: 2px; }
+}
+@media (min-width: 641px) {
+  .tablewrap td[data-label="Session"] { min-width: 320px; }
+  .tablewrap td[data-label="Notes"], .tablewrap td[data-label="Logged"] { min-width: 180px; }
 }
 
 /* comments, check-ins, summary bars */
@@ -81,3 +88,6 @@ th { font-weight: 600; background: var(--maroon-tint); }
 td, .cmt, .sess p { overflow-wrap: anywhere; }
 .check { display: flex; gap: 8px; align-items: flex-start; font-size: .92rem; }
 .check input { width: auto; margin-top: 4px; }
+@media (max-width: 640px) { .tablewrap td:empty { display: none !important; } }
+.tablewrap td[data-label=""] { white-space: nowrap; }
+@media (min-width: 641px) { .tablewrap td[data-label="Day"] { white-space: nowrap; } }
